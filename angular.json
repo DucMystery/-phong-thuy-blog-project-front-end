@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "medium-FE"
+    }
+  },
+  "defaultProject": "medium-FE",
+  "cli": {
+    "analytics": "b099860b-6bd3-4583-88e6-8d20656bcb8c"
+  }
 }
