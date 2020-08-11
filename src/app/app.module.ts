@@ -9,17 +9,17 @@ import {authInterceptorProviders} from "./_interceptor/auth.intorceptor";
 import {APP_BASE_HREF, CommonModule} from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BlogsModule} from './blogs/blogs.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BlogsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule,FormsModule,ReactiveFormsModule
+    RouterModule, FormsModule, ReactiveFormsModule, BlogsModule
   ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'}

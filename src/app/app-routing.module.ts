@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {BlogsComponent} from './blogs/blogs.component';
 import {BlogDetailComponent} from './blogs/blog-detail/blog-detail.component';
 
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),ReactiveFormsModule,FormsModule],
   providers: [RouterModule]
 })
 export class AppRoutingModule {

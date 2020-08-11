@@ -2,9 +2,10 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {BlogsComponent} from './blogs.component';
-import {BrowserModule} from '@angular/platform-browser';
 import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import { HeaderComponent } from './header/header.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -24,7 +25,10 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class BlogsModule {
