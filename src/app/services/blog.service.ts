@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class BlogService {
 
-  private blogs:Iblog[]=[];
   private URL='http://localhost:8080/api/blogs/'
 
 
@@ -17,5 +16,9 @@ export class BlogService {
   }
   getAllBlogByTime():Observable<Iblog>{
     return this.http.get<Iblog>(this.URL+'list');
+  }
+
+  getBlogById(id:number):Observable<Iblog>{
+    return this.http.get<Iblog>(this.URL+id);
   }
 }
