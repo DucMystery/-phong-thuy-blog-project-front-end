@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {$} from 'protractor';
 
 @Component({
   selector: 'app-blog-detail',
@@ -10,6 +11,6 @@ export class BlogDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
 
+  }
 }

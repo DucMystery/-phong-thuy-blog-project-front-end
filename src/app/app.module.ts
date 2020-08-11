@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BlogsComponent } from './blogs/blogs.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import {RegitrationComponent} from './auth/regitration/regitration.component';
@@ -16,7 +15,6 @@ import { BlogDetailComponent } from './blogs/blog-detail/blog-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BlogsComponent,
     AuthComponent,
     LoginComponent,
     RegitrationComponent,

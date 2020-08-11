@@ -48,12 +48,19 @@ export class BlogsComponent implements OnInit {
         }
 
       } , { offset: '95%' } );
-    })
-    this.getAllBlogs()
+      var loader = function() {
+        setTimeout(function() {
+          if($('#ftco-loader').length > 0) {
+            $('#ftco-loader').removeClass('show');
+          }
+        }, 1);
+      };
+      loader();
+    });
+    this.getAllBlogs();
   }
 
   getAllBlogs(){      //nếu dùng API thật thì cần observable
     this.blogs=this.blogService.getAllBlogByTime();
   }
-
 }

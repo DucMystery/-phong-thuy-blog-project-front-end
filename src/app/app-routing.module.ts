@@ -5,7 +5,8 @@ import {BlogDetailComponent} from './blogs/blog-detail/blog-detail.component';
 
 
 const routes: Routes = [
-  {path: 'blogs',
+  {
+    path: 'blogs',
     loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)
   },
 ];
