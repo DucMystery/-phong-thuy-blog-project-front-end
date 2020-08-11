@@ -9,7 +9,7 @@ declare var $: any;
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  blogs=[]
+  blogs=[];
 
   constructor(private blogService:BlogService) {
   }
@@ -52,7 +52,7 @@ export class BlogsComponent implements OnInit {
     this.getAllBlogs()
   }
 
-  getAllBlogs(){          //nếu dùng API thật thì cần observable
+  getAllBlogs(){      //nếu dùng API thật thì cần observable
     this.blogs=this.blogService.getAllBlogByTime();
   }
 

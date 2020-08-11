@@ -6,11 +6,8 @@ import {BlogDetailComponent} from './blogs/blog-detail/blog-detail.component';
 
 const routes: Routes = [
   {path: 'blogs',
-    loadChildren: () => import('../blogs/blgos.module').then(m => m.AdminModule),
-    canActivate: [AdminGuard],
+    loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)
   },
-
-
 ];
 
 @NgModule({
