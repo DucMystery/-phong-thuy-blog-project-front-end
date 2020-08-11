@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {BlogsComponent} from './blogs.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {BlogDetailComponent} from './blog-detail/blog-detail.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    BlogsComponent
+    BlogsComponent,
+    HeaderComponent
+  ],
+  exports: [
+    HeaderComponent
   ],
   imports: [
     CommonModule,
