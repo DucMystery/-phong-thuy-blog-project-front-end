@@ -19,6 +19,6 @@ export class BlogService {
   }
 
   getBlogById(id:number):Observable<Iblog>{
-    return this.http.get<Iblog>(this.URL+id);
+    return this.http.get<Iblog>(this.URL+id+'/search');
   }
 }
