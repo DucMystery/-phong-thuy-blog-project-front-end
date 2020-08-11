@@ -11,7 +11,7 @@
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
-        novalidate
+        novalidate [formGroup]="myGroup"
       >
         <div class="form-group">
           <label for="username">Email</label>
