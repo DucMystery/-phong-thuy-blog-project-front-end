@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {authInterceptorProviders} from "./_interceptor/auth.intorceptor";
 import {APP_BASE_HREF} from "@angular/common";
+import { BlogDetailComponent } from './blogs/blog-detail/blog-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {APP_BASE_HREF} from "@angular/common";
     BlogsComponent,
     AuthComponent,
     LoginComponent,
-    RegitrationComponent
+    RegitrationComponent,
+    BlogDetailComponent
   ],
   imports: [
     BrowserModule,

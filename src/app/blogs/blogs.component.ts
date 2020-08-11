@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {BlogService} from '../services/blog.service';
 
 declare var $: any;
 
@@ -8,8 +9,9 @@ declare var $: any;
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
+  blogs=[]
 
-  constructor() {
+  constructor(private blogService:BlogService) {
   }
 
   ngOnInit(): void {
@@ -47,6 +49,11 @@ export class BlogsComponent implements OnInit {
 
       } , { offset: '95%' } );
     })
+    this.getAllBlogs()
+  }
+
+  getAllBlogs(){          //nếu dùng API thật thì cần observable
+    this.blogs=this.blogService.getAllBlogByTime();
   }
 
 }
