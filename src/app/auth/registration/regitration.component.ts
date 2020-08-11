@@ -13,7 +13,7 @@ export class RegitrationComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  myGroup: FormGroup;
+
 
   constructor(private authService: AuthService,
               private route: Router) {

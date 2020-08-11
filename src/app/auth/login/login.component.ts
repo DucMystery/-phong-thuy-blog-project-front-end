@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   errorMess = '';
   roles: string[] = [];
 
-myGroup:FormGroup
+
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService
 
