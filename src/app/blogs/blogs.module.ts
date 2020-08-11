@@ -6,6 +6,7 @@ import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {SideRightComponent} from "../multi/side-right/side-right.component";
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     BlogsComponent,
-    HeaderComponent
+    HeaderComponent,
+    SideRightComponent
   ],
   exports: [
     HeaderComponent

@@ -7,6 +7,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "../app-routing.module";
 import {AppComponent} from "../app.component";
+import {environment} from "../../environments/environment";
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
@@ -18,7 +19,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [LoginComponent, RegitrationComponent],
   imports: [CommonModule,
-    ReactiveFormsModule, HttpClientModule, RouterModule.forChild(routes), FormsModule],
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forChild(routes)
+
+  ],
   providers: [],
 })
 export class AuthRoutingModule {
