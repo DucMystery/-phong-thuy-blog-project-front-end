@@ -4,27 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BlogsComponent } from './blogs/blogs.component';
-import { AuthComponent } from './auth/auth.component';
-import { LoginComponent } from './auth/login/login.component';
-import {RegitrationComponent} from './auth/regitration/regitration.component';
-import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {authInterceptorProviders} from "./_interceptor/auth.intorceptor";
-import {APP_BASE_HREF} from "@angular/common";
+import {APP_BASE_HREF, CommonModule} from "@angular/common";
+import {ActivatedRoute, RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    BlogsComponent,
-    AuthComponent,
-    LoginComponent,
-    RegitrationComponent
+    BlogsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,FormsModule,ReactiveFormsModule
   ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'}
