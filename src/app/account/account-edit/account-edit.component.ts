@@ -41,7 +41,6 @@ export class AccountEditComponent implements OnInit {
       phoneNumber: [''],
       nickName: [''],
       email: [''],
-      password: [''],
       avatar: ['']
     });
     if (this.account.avatar != null) {

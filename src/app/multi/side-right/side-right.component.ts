@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from "../../services/tokenStorage.service";
 
 @Component({
   selector: 'app-side-right',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-right.component.css']
 })
 export class SideRightComponent implements OnInit {
-
-  constructor() { }
+  isLoggedIn: boolean;
+  avatarUrl: string;
+  constructor(private  storage: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
+    this.avatarUrl = this.storage.getUserAvartar();
   }
 
 }

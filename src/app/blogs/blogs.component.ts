@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../services/blog.service';
 import {Iblog} from '../interface/iblog';
+import {TokenStorageService} from "../services/tokenStorage.service";
 
 declare var $: any;
 
@@ -10,13 +11,19 @@ declare var $: any;
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
+  isLoggedIn: boolean;
+  avatarUrl: string;
   blogs: any = [];
 
-  constructor(private blogService: BlogService) {
+  constructor(private blogService: BlogService,
+              private storage: TokenStorageService
+              ) {
   }
 
   ngOnInit(): void {
     this.getAllBlogs();
+    this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
+    this.avatarUrl = this.storage.getUserAvartar();
   }
 
   getAllBlogs() {
