@@ -9,6 +9,17 @@
       </div>
       <div *ngIf="isLoggedIn">
         <img height= "170" width="170" [src]="avatarUrl">
+        <div class="container">
+          <div class="dropdown">
+            <i class="dropbtn">Hello! {{firstName}} {{lastName}}</i>
+            <div class="dropdown-content">
+              <a href="/user/{{userId}}/profile">Profile</a>
+              <a href="/user/{{userId}}/songs">Nhạc cá nhân</a>
+              <a class="btn btn-danger" (click)="logOut()">Log Out</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </form>
   </div>

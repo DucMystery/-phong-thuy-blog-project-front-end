@@ -62,7 +62,21 @@
                 <button type="button" class="form-control" routerLink="/auth/login">Dang Nhap</button>
               </div>
               <div *ngIf="isLoggedIn">
-                <img height= "170" width="170" [src]="avatarUrl">
+                <div class="container">
+                  <div class="col-xs-6">
+                    <img height= "170" width="170" [src]="avatarUrl">
+                  </div>
+
+                  <div class="dropdown col-xs-6">
+                    <i class="dropbtn">Hello!</i>
+                    <div class="dropdown-content">
+                      <a routerLink="/edit">Profile</a>
+                      <a href="#">Nhạc cá nhân</a>
+                      <a class="btn btn-danger" routerLink="/auth/logout">Log Out</a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </form>
           </div>
