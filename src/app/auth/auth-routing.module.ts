@@ -8,11 +8,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "../app-routing.module";
 import {AppComponent} from "../app.component";
 import {environment} from "../../environments/environment";
+import {LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
-  {path:'register',component:RegitrationComponent}
-
+  {path:'register',component:RegitrationComponent},
+  {path: 'logout', component: LogoutComponent}
 
 ];
 

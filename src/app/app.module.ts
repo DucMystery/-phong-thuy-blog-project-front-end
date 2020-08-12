@@ -11,10 +11,12 @@ import {ActivatedRoute, RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BlogsModule} from './blogs/blogs.module';
 import {AccountModule} from "./account/account.module";
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogoutComponent,
   ],
     imports: [
         BrowserModule,

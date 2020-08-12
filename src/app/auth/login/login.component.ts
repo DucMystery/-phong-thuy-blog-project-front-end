@@ -18,15 +18,16 @@ export class LoginComponent implements OnInit {
 
 myGroup:FormGroup;
   constructor(private authService: AuthService,
-              private tokenStorage: TokenStorageService
+              private tokenStorage: TokenStorageService,
+              private router: Router
 
               ) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      // this.roles = this.tokenStorage.getUser();
-    }
+    // if (this.tokenStorage.getToken()) {
+    //   this.isLoggedIn = true;
+    //   // this.roles = this.tokenStorage.getUser();
+    // }
   }
   onSubmit() {
     this.authService.login(this.form).subscribe(
@@ -38,6 +39,7 @@ myGroup:FormGroup;
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        this.router.navigate(['/blogs'])
         // this.roles = this.tokenStorage.getUser().roles;
       },
       err => {
