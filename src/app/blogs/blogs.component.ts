@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../services/blog.service';
-import {Iblog} from '../interface/iblog';
+import {IBlog} from '../models/iblog';
 
 declare var $: any;
 
@@ -20,7 +20,7 @@ export class BlogsComponent implements OnInit {
   }
 
   getAllBlogs() {
-    this.blogService.getAllBlogByTime().subscribe((resp: Iblog) => {
+    this.blogService.getAllBlogByTime().subscribe((resp: IBlog) => {
       this.blogs = resp;
       $(function() {
         var i = 0;

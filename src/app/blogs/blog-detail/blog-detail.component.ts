@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {$} from 'protractor';
-import {Iblog} from '../../interface/iblog';
 import {ActivatedRoute} from '@angular/router';
 import {BlogService} from '../../services/blog.service';
+import {IBlog} from '../../models/iblog';
 
 @Component({
   selector: 'app-blog-detail',
@@ -10,7 +10,7 @@ import {BlogService} from '../../services/blog.service';
   styleUrls: ['./blog-detail.component.css']
 })
 export class BlogDetailComponent implements OnInit {
-  blog:Iblog=null;
+  blog:IBlog=null;
 
   constructor(private activatedRoute:ActivatedRoute,private blogService:BlogService) { }
 
@@ -21,7 +21,7 @@ export class BlogDetailComponent implements OnInit {
 
   }
   getBlogById(){
-    this.blogService.getBlogById(this.blogId).subscribe((resp:Iblog)=>{
+    this.blogService.getBlogById(this.blogId).subscribe((resp:IBlog)=>{
       this.blog=resp;
       console.log("ok");
     })

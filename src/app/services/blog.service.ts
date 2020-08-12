@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import {Iblog} from '../interface/iblog';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {IBlog} from '../models/iblog';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  private URL='http://localhost:8080/api/blogs/'
+  private URL=environment.apiUrl + '/api/blogs/'
 
 
   constructor(private http:HttpClient) {
 
   }
-  getAllBlogByTime():Observable<Iblog>{
-    return this.http.get<Iblog>(this.URL+'list');
+  getAllBlogByTime():Observable<IBlog>{
+    return this.http.get<IBlog>(this.URL+'list');
   }
 
-  getBlogById(id:number):Observable<Iblog>{
-    return this.http.get<Iblog>(this.URL+id+'/search');
+  getBlogById(id:number):Observable<IBlog>{
+    return this.http.get<IBlog>(this.URL+id+'/search');
+  }
+
+  createBlog(blog: any): Observable<IBlog>{
+    return this.http.post<IBlog>(this.URL+ 'create',blog);
   }
 }
