@@ -24,7 +24,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     BlogsComponent,
-    HeaderComponent,
     SideRightComponent
    ,BlogDetailComponent, BlogAddComponent, BlogEditComponent
   ],

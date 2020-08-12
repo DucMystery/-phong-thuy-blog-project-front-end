@@ -8,7 +8,7 @@ export class AccountService {
   avatarUrl: string;
   constructor(private http: HttpClient) { }
 save(imgUrl: IUser) :Observable<any>{
-    return this.http.post(ACCOUNT_API,imgUrl);
+    return this.http.post(ACCOUNT_API+'create',imgUrl);
 }
 findAccountById(id : number) : Observable<any> {
     return this.http.get(ACCOUNT_API+id+'/details')
