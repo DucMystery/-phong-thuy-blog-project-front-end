@@ -11,7 +11,7 @@
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
-        novalidate [formGroup]="myGroup"
+        novalidate
       >
         <div class="form-group">
           <label for="username">Email</label>
@@ -68,7 +68,6 @@
           </div>
         </div>
       </form>
-
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ roles }}.
       </div>

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   errorMess = '';
   roles: string[] = [];
 
-myGroup:FormGroup
+myGroup:FormGroup;
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService
 
@@ -25,7 +25,7 @@ myGroup:FormGroup
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser();
+      // this.roles = this.tokenStorage.getUser();
     }
   }
   onSubmit() {
@@ -33,12 +33,12 @@ myGroup:FormGroup
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         console.log(data.accessToken);
-        this.tokenStorage.saveUser(data.email);
+        this.tokenStorage.saveAccountId(data.id);
         console.log(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+        // this.roles = this.tokenStorage.getUser().roles;
       },
       err => {
         this.errorMess =  err.error.message;

@@ -21,12 +21,13 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(username: string) {
+  public saveAccountId(id: string) {
     window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, username);
+    window.sessionStorage.setItem(USER_KEY, id);
   }
 
-  public getUser() {
+  public getAccountId() {
+    //sau thu bo Json parse xem chuong trinh co chay khong
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
 }
