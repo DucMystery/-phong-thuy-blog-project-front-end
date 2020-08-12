@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../../services/tokenStorage.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-logout',
@@ -9,12 +10,15 @@ import {Router} from "@angular/router";
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private tokenStorageService: TokenStorageService,
-              private rouuter : Router) { }
+  constructor(private authService: AuthService,
+              private tokenStorageService : TokenStorageService,
+              private router : Router) { }
 
   ngOnInit(): void {
-    this.tokenStorageService.signOut();
-    this.rouuter.navigate(['blog'])
+   this.authService.logout();
+   this.tokenStorageService.signOut();
+   console.log(this.tokenStorageService.getToken());
+    this.router.navigate(['blogs'])
   }
 
 }

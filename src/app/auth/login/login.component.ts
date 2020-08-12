@@ -3,6 +3,8 @@ import {AuthService} from "../../services/auth.service";
 import {TokenStorageService} from "../../services/tokenStorage.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from '@angular/forms';
+import {AccountService} from "../../services/account.service";
+import {IUser} from "../../models/IUser";
 
 @Component({
   selector: 'app-login',
@@ -11,15 +13,17 @@ import {FormGroup} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   form: any ={};
+  avatarUrl: string;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMess = '';
   roles: string[] = [];
-
+  account: IUser;
 myGroup:FormGroup;
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
-              private router: Router
+              private router: Router,
+              private accountService: AccountService
 
               ) { }
 
@@ -30,6 +34,7 @@ myGroup:FormGroup;
     // }
   }
   onSubmit() {
+
     this.authService.login(this.form).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -39,8 +44,11 @@ myGroup:FormGroup;
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigate(['/blogs'])
-        // this.roles = this.tokenStorage.getUser().roles;
+        this.router.navigate(['/blogs']);
+        this.tokenStorage.saveStatusWhenUserLogged('loged');
+        this.accountService.findAccountById(data.id).subscribe( dataAccount => {
+          this.tokenStorage.saveUserAvatar(dataAccount.avatar);
+        })
       },
       err => {
         this.errorMess =  err.error.message;

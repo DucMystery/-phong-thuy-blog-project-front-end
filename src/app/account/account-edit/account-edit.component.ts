@@ -5,6 +5,7 @@ import {AccountService} from "../../services/account.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../services/tokenStorage.service";
 import {IUser} from "../../models/IUser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-account-edit',
@@ -19,12 +20,14 @@ export class AccountEditComponent implements OnInit {
   imgSrc: any;
   id: number;
   account: IUser;
+  updatedAccount = false;
 
   constructor(
     private storage: AngularFireStorage,
     private fb: FormBuilder,
     private  accountService: AccountService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private router: Router
   ) {
 
   }
@@ -34,6 +37,7 @@ export class AccountEditComponent implements OnInit {
     this.editAccount = this.fb.group({
       firstName: ['', Validators.required],
       lastName: [''],
+      birthDay: [''],
       phoneNumber: [''],
       nickName: [''],
       email: [''],
@@ -53,6 +57,8 @@ export class AccountEditComponent implements OnInit {
 
   submitEditAccount(id, account: any) {
     this.accountService.editAccount(id, account).subscribe();
+    this.updatedAccount = true;
+    this.router.navigate(['/blogs'])
   }
 
   EditAvatar(event: any) {
@@ -76,6 +82,7 @@ export class AccountEditComponent implements OnInit {
           fileRef.getDownloadURL().subscribe(url => {
             this.editAccount.value.avatar = url;
             this.submitEditAccount(this.id, this.editAccount.value);
+            this.tokenStorageService.saveUserAvatar(url);
             console.log(url)
           });
         })
