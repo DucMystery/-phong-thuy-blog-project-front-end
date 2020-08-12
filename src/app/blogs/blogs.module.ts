@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { BlogAddComponent } from './blog-add/blog-add.component';
 import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
+import {SideRightComponent} from "../multi/side-right/side-right.component";
 
 const routes: Routes = [
   {
@@ -22,7 +23,10 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    BlogsComponent,BlogDetailComponent, BlogAddComponent, BlogEditComponent
+    BlogsComponent,
+    HeaderComponent,
+    SideRightComponent
+   ,BlogDetailComponent, BlogAddComponent, BlogEditComponent
   ],
   exports: [
     BlogsComponent

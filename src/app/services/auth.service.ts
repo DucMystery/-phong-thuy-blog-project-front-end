@@ -21,6 +21,9 @@ export class AuthService {
   }
 
   register(user: IUser): Observable<any> {
-    return this.http.post(AUTH_API + 'api/accounts/create', user);
+    return this.http.post(AUTH_API + 'api/accounts', user);
+  }
+  logout(){
+    return this.http.get(AUTH_API+'logout');
   }
 }

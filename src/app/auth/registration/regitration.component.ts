@@ -16,7 +16,8 @@ export class RegitrationComponent implements OnInit {
 
 
   constructor(private authService: AuthService,
-              private route: Router) {
+              private route: Router
+            ) {
   }
 
   ngOnInit() {
