@@ -9,11 +9,13 @@ import {APP_BASE_HREF, CommonModule} from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+
   ],
   imports: [
     BrowserModule,

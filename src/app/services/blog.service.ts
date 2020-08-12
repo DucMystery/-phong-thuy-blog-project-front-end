@@ -15,15 +15,20 @@ export class BlogService {
   constructor(private http:HttpClient) {
 
   }
-  getAllBlogByTime():Observable<IBlog>{
-    return this.http.get<IBlog>(this.URL+'list');
+  getAllBlogByTime():Observable<IBlog[]>{
+    return this.http.get<IBlog[]>(this.URL+'list');
   }
 
   getBlogById(id:number):Observable<IBlog>{
-    return this.http.get<IBlog>(this.URL+id+'/search');
+    return this.http.get<IBlog>(this.URL+id+'/get-blog');
   }
 
   createBlog(blog: any): Observable<IBlog>{
     return this.http.post<IBlog>(this.URL+ 'create',blog);
+  }
+
+  updateBlog(id: number, data: any): Observable<IBlog>{
+    return this.http.put<IBlog>(this.URL+id+'/edit',data);
+
   }
 }

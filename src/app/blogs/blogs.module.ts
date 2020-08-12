@@ -7,6 +7,8 @@ import { HeaderComponent } from '../header/header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { BlogAddComponent } from './blog-add/blog-add.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 const routes: Routes = [
   {
@@ -14,12 +16,13 @@ const routes: Routes = [
     component: BlogsComponent
   },
   {path:':id/blogDetail',component:BlogDetailComponent},
-  {path: 'create',component: BlogAddComponent}
+  {path: 'create',component: BlogAddComponent},
+  {path: ':id/edit',component:BlogEditComponent}
 ];
 
 @NgModule({
   declarations: [
-    BlogsComponent,BlogDetailComponent, BlogAddComponent
+    BlogsComponent,BlogDetailComponent, BlogAddComponent, BlogEditComponent
   ],
   exports: [
     BlogsComponent
@@ -29,7 +32,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AngularEditorModule,
   ]
 })
 export class BlogsModule {

@@ -44,12 +44,13 @@
                   <h3 class="mb-2"><a [routerLink]="[blog.id,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
-                      <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
-                      <span><a [routerLink]="[blog.id,'blogDetail']"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+                      <span><i class="icon-calendar mr-2"></i>{{blog.postTime}}</span>
+                      <span><a [routerLink]="[blog.id,'blogDetail']"><i class="icon-folder-o mr-2">{{blog.category.name}}</i></a></span>
                       <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
                     </p>
                   </div>
-                  <p class="mb-4">{{blog.content}}</p>
+<!--                  <angular-editor [(ngModel)]="blog.content"></angular-editor>-->
+                  <p class="mb-4"></p>
                   <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
                 </div>
               </div>

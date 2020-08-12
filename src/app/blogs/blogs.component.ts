@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../services/blog.service';
 import {IBlog} from '../models/iblog';
+import {pipe} from 'rxjs';
 
 declare var $: any;
 
@@ -10,7 +11,7 @@ declare var $: any;
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  blogs: any = [];
+  blogs: IBlog[] ;
 
   constructor(private blogService: BlogService) {
   }
@@ -20,8 +21,11 @@ export class BlogsComponent implements OnInit {
   }
 
   getAllBlogs() {
-    this.blogService.getAllBlogByTime().subscribe((resp: IBlog) => {
+    this.blogService.getAllBlogByTime().subscribe((resp: IBlog[]) => {
       this.blogs = resp;
+      this.blogs.map(blog =>{
+        blog.postTime = new Date(blog.postTime);
+      })
       $(function() {
         var i = 0;
         $('.ftco-animate').waypoint(function(direction) {
@@ -57,7 +61,7 @@ export class BlogsComponent implements OnInit {
         }, {offset: '95%'});
         var loader = function() {
           setTimeout(function() {
-            if ($('#ftco-loader').length > 0) {
+            if($('#ftco-loader').length > 0) {
               $('#ftco-loader').removeClass('show');
             }
           }, 1);
