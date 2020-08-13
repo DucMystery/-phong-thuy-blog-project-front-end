@@ -8,17 +8,19 @@
             <!--            đây là phần body của blogs.hiển thị các blog-->
             <div class="col-md-12" *ngFor="let blog of blogs">
               <div class="blog-entry ftco-animate d-md-flex">
-                <a [routerLink]="[blog.id,'blogDetail']" class="img img-2"
-                   style="background-image: url('../../assets/static/images/image_1.jpg');"></a>
+<!--                <a [routerLink]="[blog.id,'blogDetail']" class="img img-2"-->
+<!--                   style="background-image: url('../../assets/static/images/image_1.jpg');"></a>-->
+                <img [routerLink]="[blog.id,'blogDetail']" class="img img-2" src="{{blog.account.avatar}}"/>
                 <div class="text text-2 pl-md-4">
                   <h3 class="mb-2"><a [routerLink]="[blog.id,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
-                      <span><i class="icon-calendar mr-2"></i>{{blog.postTime}}</span>
+                      <span><i class="icon-calendar mr-2"></i>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
                       <span><a [routerLink]="[blog.id,'blogDetail']"><i class="icon-folder-o mr-2">{{blog.category.name}}</i></a></span>
                       <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
                     </p>
                   </div>
+<!--                  <span [innerHTML]="blog.content"></span>-->
 <!--                  <angular-editor [(ngModel)]="blog.content"></angular-editor>-->
                   <p class="mb-4"></p>
                   <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
@@ -58,8 +60,8 @@
             <form action="#" class="search-form">
               <div *ngIf="!isLoggedIn" class="form-group">
                 <!--        <span class="icon icon-search"></span>-->
-                <button type="button" class="form-control" routerLink="/auth/register">Dang ky</button>
-                <button type="button" class="form-control" routerLink="/auth/login">Dang Nhap</button>
+                <button type="button" class="form-control" routerLink="/auth/register">Register</button>
+                <button type="button" class="form-control" routerLink="/auth/login">Login</button>
               </div>
               <div *ngIf="isLoggedIn">
                 <div class="container">

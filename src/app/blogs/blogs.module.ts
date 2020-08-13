@@ -10,6 +10,7 @@ import { BlogAddComponent } from './blog-add/blog-add.component';
 import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {SideRightComponent} from "../multi/side-right/side-right.component";
+import { BlogDeleteComponent } from './blog-delete/blog-delete.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   declarations: [
     BlogsComponent,
     SideRightComponent
-   ,BlogDetailComponent, BlogAddComponent, BlogEditComponent
+   ,BlogDetailComponent, BlogAddComponent, BlogEditComponent, BlogDeleteComponent
   ],
   exports: [
     BlogsComponent

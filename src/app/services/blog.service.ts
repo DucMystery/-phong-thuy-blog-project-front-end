@@ -20,7 +20,7 @@ export class BlogService {
   }
 
   getBlogById(id:number):Observable<IBlog>{
-    return this.http.get<IBlog>(this.URL+id+'/get-blog');
+    return this.http.get<IBlog>(this.URL+'get-blog/'+id);
   }
 
   createBlog(blog: any): Observable<IBlog>{

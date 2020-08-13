@@ -5,6 +5,9 @@ import {BlogService} from '../../services/blog.service';
 import {CategoryService} from '../../services/category.service';
 import {Router} from '@angular/router';
 import {IBlog} from '../../models/iblog';
+import {TokenStorageService} from '../../services/tokenStorage.service';
+import {AccountService} from '../../services/account.service';
+import {IUser} from '../../models/IUser';
 
 declare var $: any;
 
@@ -21,15 +24,19 @@ export class BlogAddComponent implements OnInit {
     content: new FormControl(''),
     category: new FormControl(''),
     account: new FormControl(''),
-    // postTime: new FormControl('')
 
 
   });
+
+  idAccount: number;
   myArray: Array<boolean> = [true, false];
   myDefault: Boolean = this.myArray[0];
 
+
   constructor(private fb: FormBuilder,
               private blogService: BlogService,
+              private storageService: TokenStorageService,
+              private accountService: AccountService,
               private categoryService: CategoryService,
               private router: Router) {
   }
@@ -48,6 +55,7 @@ export class BlogAddComponent implements OnInit {
   submit() {
     if (this.blogForm.valid) {
       var markupStr = $('#summernote').summernote('code');
+      this.idAccount = +this.storageService.getAccountId();
       const blog: IBlog = {
         status: this.blogForm.value.status,
         title: this.blogForm.value.title,
@@ -56,10 +64,11 @@ export class BlogAddComponent implements OnInit {
           id: this.blogForm.value.category
         },
         account: {
-          id: 2
+          id: this.idAccount
         }
       };
       this.blogService.createBlog(blog).subscribe(data => {
+        console.log(data);
         this.router.navigate(['/blogs']);
       });
     }

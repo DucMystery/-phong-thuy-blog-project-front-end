@@ -6,6 +6,7 @@ import {CategoryService} from '../../services/category.service';
 import {BlogService} from '../../services/blog.service';
 import {IBlog} from '../../models/iblog';
 
+declare var $: any;
 @Component({
   selector: 'app-blog-edit',
   templateUrl: './blog-edit.component.html',
@@ -40,6 +41,9 @@ export class BlogEditComponent implements OnInit {
       this.categories =resp
     })
     this.findById();
+    $(function() {
+      $('#summernote').summernote();
+    });
   }
 
   findById(){
@@ -50,20 +54,21 @@ export class BlogEditComponent implements OnInit {
 
   update() {
     if (this.blogEditForm.valid){
+      var markupStr = $('#summernote').summernote('code');
       const blog: IBlog = {
         id: this.id,
         title: this.blogEditForm.value.title,
-        content: this.blogEditForm.value.content,
+        content: markupStr,
         status: this.blogEditForm.value.status,
         category: {
-          id: this.blogEditForm.value.category.id
+          id: this.blogEditForm.value.category
         },
         account: {
           id: 2
         }
       }
       this.blogService.updateBlog(this.id,blog).subscribe(data =>{
-        this.router.navigate(['/books'])
+        this.router.navigate(['/blogs'])
       });
     }
   }
