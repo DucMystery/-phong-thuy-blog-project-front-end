@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../services/blog.service';
-import {Iblog} from '../interface/iblog';
+import {IBlog} from '../models/iblog';
+import {pipe} from 'rxjs';
+import {TokenStorageService} from "../services/tokenStorage.service";
 
 declare var $: any;
 
@@ -10,18 +12,26 @@ declare var $: any;
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  blogs: any = [];
+  blogs: IBlog[] ;
+  isLoggedIn: boolean;
+  avatarUrl: string;
 
-  constructor(private blogService: BlogService) {
+  constructor(private blogService: BlogService,
+              private storage: TokenStorageService) {
   }
 
   ngOnInit(): void {
     this.getAllBlogs();
+    this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
+    this.avatarUrl = this.storage.getUserAvartar();
   }
 
   getAllBlogs() {
-    this.blogService.getAllBlogByTime().subscribe((resp: Iblog) => {
+    this.blogService.getAllBlogByTime().subscribe((resp: IBlog[]) => {
       this.blogs = resp;
+      this.blogs.map(blog =>{
+        blog.postTime = new Date(blog.postTime);
+      })
       $(function() {
         var i = 0;
         $('.ftco-animate').waypoint(function(direction) {
@@ -57,7 +67,7 @@ export class BlogsComponent implements OnInit {
         }, {offset: '95%'});
         var loader = function() {
           setTimeout(function() {
-            if ($('#ftco-loader').length > 0) {
+            if($('#ftco-loader').length > 0) {
               $('#ftco-loader').removeClass('show');
             }
           }, 1);

@@ -10,19 +10,32 @@ import {APP_BASE_HREF, CommonModule} from "@angular/common";
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BlogsModule} from './blogs/blogs.module';
+import {AccountModule} from "./account/account.module";
+import { LogoutComponent } from './auth/logout/logout.component';
+import {HeaderComponent} from './header/header.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogoutComponent,
+    HeaderComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule, FormsModule, ReactiveFormsModule, BlogsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AccountModule,
+    RouterModule
   ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'}
+  ],
+  exports: [
+    HeaderComponent
   ],
   bootstrap: [AppComponent]
 })
