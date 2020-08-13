@@ -35,7 +35,6 @@ export class BlogsComponent implements OnInit {
   getAllBlogs() {
     this.blogService.getAllBlogByTime().subscribe((resp: IBlog[]) => {
       this.blogs = resp;
-
       this.blogs.map(blog =>{
         console.log(blog.content);
         console.log(blog.account.avatar);
@@ -46,9 +45,7 @@ export class BlogsComponent implements OnInit {
       //   $('.ftco-animate').waypoint(function(direction) {
       //
       //     if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
-      //
       //       i++;
-      //
       //       $(this.element).addClass('item-animate');
       //       setTimeout(function() {
       //
