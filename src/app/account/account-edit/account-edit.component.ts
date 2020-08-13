@@ -100,7 +100,6 @@ export class AccountEditComponent implements OnInit {
       this.selectedImage = null;
     }
   }
-
   //=============================================avatar edit xong
 
 
