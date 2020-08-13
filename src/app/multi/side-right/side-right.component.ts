@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../../services/tokenStorage.service";
+import {IUser} from "../../models/IUser";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-side-right',
@@ -9,7 +11,9 @@ import {TokenStorageService} from "../../services/tokenStorage.service";
 export class SideRightComponent implements OnInit {
   isLoggedIn: boolean;
   avatarUrl: string;
-  constructor(private  storage: TokenStorageService) { }
+  accounts: IUser[];
+  constructor(private  storage: TokenStorageService,
+              private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.isLoggedIn= this.storage.getStatusLoggedOrLogout();

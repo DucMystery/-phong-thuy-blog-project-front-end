@@ -6,7 +6,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
-import {RouterModule} from '@angular/router';
+import {RouterModule} from "@angular/router";
 
 
 
