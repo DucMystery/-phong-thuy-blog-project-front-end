@@ -3,6 +3,8 @@ import {BlogService} from '../services/blog.service';
 import {IBlog} from '../models/iblog';
 import {pipe} from 'rxjs';
 import {TokenStorageService} from "../services/tokenStorage.service";
+import {AccountService} from '../services/account.service';
+import {IUser} from '../models/IUser';
 
 declare var $: any;
 
@@ -15,9 +17,13 @@ export class BlogsComponent implements OnInit {
   blogs: IBlog[] ;
   isLoggedIn: boolean;
   avatarUrl: string;
+  accounts: IUser[];
 
   constructor(private blogService: BlogService,
-              private storage: TokenStorageService) {
+              private storage: TokenStorageService,
+              private accountService: AccountService
+              ) {
+
   }
 
   ngOnInit(): void {
@@ -29,7 +35,10 @@ export class BlogsComponent implements OnInit {
   getAllBlogs() {
     this.blogService.getAllBlogByTime().subscribe((resp: IBlog[]) => {
       this.blogs = resp;
+
       this.blogs.map(blog =>{
+        console.log(blog.content);
+        console.log(blog.account.avatar);
         blog.postTime = new Date(blog.postTime);
       })
       $(function() {
@@ -74,7 +83,7 @@ export class BlogsComponent implements OnInit {
         };
         loader();
       });
-      console.log('ok');
+
     });
   }
 

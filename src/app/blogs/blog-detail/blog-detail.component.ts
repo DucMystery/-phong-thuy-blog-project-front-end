@@ -26,6 +26,4 @@ export class BlogDetailComponent implements OnInit {
       console.log(this.blog.title);
     })
   }
-
-
 }
