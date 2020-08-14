@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {$} from 'protractor';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from '../../services/blog.service';
 import {IBlog} from '../../models/iblog';
 import {CommentService} from '../../services/comment.service';
@@ -32,7 +32,8 @@ export class BlogDetailComponent implements OnInit {
               private blogService: BlogService,
               private commentService: CommentService,
               private fb: FormBuilder,
-              private storage: TokenStorageService
+              private storage: TokenStorageService,
+              private route:Router
   ) {
   }
 
@@ -59,7 +60,6 @@ export class BlogDetailComponent implements OnInit {
     });
   }
 
-
   postComment() {
     let date=new Date();
 
@@ -73,9 +73,9 @@ export class BlogDetailComponent implements OnInit {
         id: this.blogId
       }
     };
-
     this.commentService.saveComment(comment).subscribe((resp:Icomment)=>{
-      console.log('-----------------------------');
+      this.route.navigate(['blogs']);
+      console.log('điều hướng ở đây')
     });
   }
 }
