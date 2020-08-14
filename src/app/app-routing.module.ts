@@ -6,6 +6,7 @@ import {BlogDetailComponent} from './blogs/blog-detail/blog-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {AccountEditComponent} from "./account/account-edit/account-edit.component";
+import {SideRightComponent} from "./multi/side-right/side-right.component";
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
     loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)
   },
   {path: 'auth',loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRoutingModule)},
-  {path: 'edit', component : AccountEditComponent}
+  {path: 'edit', component : AccountEditComponent},
+  {path: 'side-right', component : SideRightComponent}
 ];
 
 @NgModule({

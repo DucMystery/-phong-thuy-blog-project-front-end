@@ -22,12 +22,12 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
     HeaderComponent
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        RouterModule, FormsModule, ReactiveFormsModule, AccountModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule
+  ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'}
   ],
