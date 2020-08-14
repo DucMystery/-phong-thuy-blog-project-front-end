@@ -9,15 +9,26 @@ import {AccountService} from "../../services/account.service";
   styleUrls: ['./side-right.component.css']
 })
 export class SideRightComponent implements OnInit {
+  id: number;
   isLoggedIn: boolean;
   avatarUrl: string;
-  accounts: IUser[];
+  account: IUser;
+
   constructor(private  storage: TokenStorageService,
               private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
     this.avatarUrl = this.storage.getUserAvartar();
+    this.findAccount();
+  }
+
+  findAccount(){
+    this.id = +this.storage.getAccountId();
+    this.accountService.findAccountById(this.id).subscribe( data => {
+      this.account = data;
+      console.log(data);
+    })
   }
 
 }
