@@ -52,8 +52,7 @@
 
         </div>
 <!--        <app-side-right></app-side-right>-->
-
-<!--        Day la code chuyen tu side-right sang-->
+        <!--        Day la code chuyen tu side-right sang-->
 
         <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
           <div class="sidebar-box pt-md-4">
@@ -63,22 +62,22 @@
                 <button type="button" class="form-control" routerLink="/auth/register">Register</button>
                 <button type="button" class="form-control" routerLink="/auth/login">Login</button>
               </div>
-              <div *ngIf="isLoggedIn">
-                <div class="container">
-                  <div class="col-xs-6">
-                    <img height= "170" width="170" [src]="avatarUrl">
-                  </div>
+<!--              <div *ngIf="isLoggedIn">-->
+<!--                <div class="container">-->
+<!--                  <div class="col-xs-6">-->
+<!--                    <img height= "170" width="170" [src]="avatarUrl">-->
+<!--                  </div>-->
 
-                  <div class="dropdown col-xs-6">
-                    <i class="dropbtn">Hello!{{}}</i>
-                    <div class="dropdown-content">
-                      <a routerLink="/edit">Profile</a>
-                      <a class="btn btn-danger" routerLink="/auth/logout">Log Out</a>
-                    </div>
-                  </div>
-                </div>
+<!--                  <div class="dropdown col-xs-6">-->
+<!--                    <i class="dropbtn">Hello!{{account.firstName}} {{account.lastName}}</i>-->
+<!--                    <div class="dropdown-content">-->
+<!--                      <a routerLink="/edit">Profile</a>-->
+<!--                      <a class="btn btn-danger" routerLink="/auth/logout">Log Out</a>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
 
-              </div>
+<!--              </div>-->
             </form>
           </div>
 
@@ -180,6 +179,15 @@
               quod mollitia delectus aut.</p>
           </div>
         </div><!-- END COL -->
+
+
+        <div id="ftco-loader" class="show fullscreen">
+          <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+          </svg>
+        </div>
+
 
 
 <div id="ftco-loader" class="show fullscreen">

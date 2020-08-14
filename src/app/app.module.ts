@@ -19,7 +19,7 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
   declarations: [
     AppComponent,
     LogoutComponent,
-    HeaderComponent,
+    HeaderComponent
 
   ],
     imports: [

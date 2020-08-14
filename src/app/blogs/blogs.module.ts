@@ -29,7 +29,8 @@ const routes: Routes = [
    ,BlogDetailComponent, BlogAddComponent, BlogEditComponent, BlogDeleteComponent
   ],
   exports: [
-    BlogsComponent
+    BlogsComponent,
+    SideRightComponent
   ],
   imports: [
     CommonModule,

@@ -17,19 +17,27 @@ export class BlogsComponent implements OnInit {
   blogs: IBlog[] ;
   isLoggedIn: boolean;
   avatarUrl: string;
-  accounts: IUser[];
+  account: IUser;
+  id: number;
 
   constructor(private blogService: BlogService,
               private storage: TokenStorageService,
               private accountService: AccountService
-              ) {
-  }
+              ) {}
 
   ngOnInit(): void {
     this.getAllBlogs();
-    // this.getAllAccounts();
-    this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
-    this.avatarUrl = this.storage.getUserAvartar();
+    this.id = +this.storage.getAccountId();
+    this.accountService.findAccountById(this.id).subscribe( data => {
+      this.account = data;
+      console.log(data);
+    })
+    this.findAccount();
+
+  }
+
+  findAccount(){
+
   }
   // getAllAccounts(){
   //   this.accountService.getAllAccount().subscribe((response: IUser[])=>{
