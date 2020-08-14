@@ -15,15 +15,11 @@ export class CommentService {
 
   constructor(private http:HttpClient) { }
 
-  getAllCommentByBlog():Observable<Icomment[]>{
-    // return this.http.get<Icomment>(this.url+'/api/comments/blog');
-    return this.http.get<Icomment[]>(this.url);
+  getAllCommentByBlog(id:number):Observable<Icomment[]>{
+    return this.http.get<Icomment[]>(this.url+id+'/blog');
   }
 
   saveComment(comment:any):Observable<Icomment>{
     return this.http.post<Icomment>(this.url+'add',comment);
   }
-
-
-
 }

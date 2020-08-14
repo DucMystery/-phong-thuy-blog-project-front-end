@@ -53,9 +53,9 @@ export class BlogDetailComponent implements OnInit {
 
   //display all the comments
   getAllComment() {
-    this.commentService.getAllCommentByBlog().subscribe((resp: Icomment[]) => {
+    this.commentService.getAllCommentByBlog(this.blogId).subscribe((resp: Icomment[]) => {
       this.comments = resp;
-      console.log(this.comments.length);
+      console.log(this.comments);
     });
   }
 

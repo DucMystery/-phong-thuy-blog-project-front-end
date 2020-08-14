@@ -14,14 +14,14 @@
 
                                     <h3 class="mb-5 font-weight-bold">6 Comments</h3>-->
             <ul class="comment-list">
-              <li class="comment">
+              <li class="comment" *ngFor="let comment of comments">
                 <div class="vcard bio">
-                  <img alt="Image placeholder">
+                  <img alt="Image placeholder" [src]="comment.account.avatar">
                 </div>
                 <div class="comment-body">
-                  <h3>John Doe</h3>
-                  <div class="meta">time here</div>
-                  <p>content here</p>
+                  <h3>{{comment.account.username}}</h3>
+                  <div class="meta">{{comment.time}}</div>
+                  <p>{{comment.content}}</p>
                   <p><a href="#" class="reply">Reply</a></p>
                 </div>
               </li>
