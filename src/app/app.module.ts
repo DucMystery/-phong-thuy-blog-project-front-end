@@ -13,21 +13,22 @@ import {BlogsModule} from './blogs/blogs.module';
 import {AccountModule} from "./account/account.module";
 import { LogoutComponent } from './auth/logout/logout.component';
 import {HeaderComponent} from './header/header.component';
-import {AngularEditorModule} from '@kolkov/angular-editor';
+import { LayoutTemplatesFullComponent } from './layout-templates-full/layout-templates-full.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogoutComponent,
     HeaderComponent,
+    LayoutTemplatesFullComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        RouterModule, FormsModule, ReactiveFormsModule, AccountModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule
+  ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'}
   ],

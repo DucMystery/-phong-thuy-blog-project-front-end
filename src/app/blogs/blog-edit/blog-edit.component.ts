@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import {BlogService} from '../../services/blog.service';
 import {IBlog} from '../../models/iblog';
+import {TokenStorageService} from '../../services/tokenStorage.service';
 
 declare var $: any;
 @Component({
@@ -23,7 +24,6 @@ export class BlogEditComponent implements OnInit {
     title: new FormControl(''),
     content: new FormControl(''),
     category: new FormControl(''),
-    account: new FormControl(''),
     // postTime: new FormControl('')
 
 
@@ -62,13 +62,10 @@ export class BlogEditComponent implements OnInit {
         status: this.blogEditForm.value.status,
         category: {
           id: this.blogEditForm.value.category
-        },
-        account: {
-          id: 2
         }
       }
       this.blogService.updateBlog(this.id,blog).subscribe(data =>{
-        this.router.navigate(['/blogs'])
+        this.router.navigate(['/blogs/list'])
       });
     }
   }

@@ -18,7 +18,7 @@ export class LogoutComponent implements OnInit {
    this.authService.logout();
    this.tokenStorageService.signOut();
    console.log(this.tokenStorageService.getToken());
-    this.router.navigate(['blogs'])
+    this.router.navigate(['blogs/list'])
   }
 
 }

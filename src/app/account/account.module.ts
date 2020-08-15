@@ -6,6 +6,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {RouterModule} from '@angular/router';
 
 
 
@@ -18,7 +19,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
         CommonModule,
         FormsModule, AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
-        AngularFireDatabaseModule, ReactiveFormsModule
+        AngularFireDatabaseModule, ReactiveFormsModule, RouterModule
     ]
 })
 export class AccountModule { }

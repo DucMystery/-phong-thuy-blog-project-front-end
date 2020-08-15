@@ -11,22 +11,29 @@ import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {SideRightComponent} from "../multi/side-right/side-right.component";
 import { BlogDeleteComponent } from './blog-delete/blog-delete.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BlogsComponent
+    component: BlogsComponent,children: [
+      {path:'list',component: BlogListComponent},
+      {path:':id/blogDetail',component:BlogDetailComponent},
+      {path: 'create',component: BlogAddComponent},
+      {path: ':id/edit',component:BlogEditComponent}
+    ]
   },
-  {path:':id/blogDetail',component:BlogDetailComponent},
-  {path: 'create',component: BlogAddComponent},
-  {path: ':id/edit',component:BlogEditComponent}
 ];
 
 @NgModule({
   declarations: [
     BlogsComponent,
-    SideRightComponent
-   ,BlogDetailComponent, BlogAddComponent, BlogEditComponent, BlogDeleteComponent
+    SideRightComponent,
+    BlogDetailComponent,
+    BlogAddComponent,
+    BlogEditComponent,
+    BlogDeleteComponent,
+    BlogListComponent
   ],
   exports: [
     BlogsComponent

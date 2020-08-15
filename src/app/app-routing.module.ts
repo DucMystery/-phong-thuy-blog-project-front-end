@@ -6,14 +6,17 @@ import {BlogDetailComponent} from './blogs/blog-detail/blog-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import {AccountEditComponent} from "./account/account-edit/account-edit.component";
+import {LayoutTemplatesFullComponent} from './layout-templates-full/layout-templates-full.component';
 
 const routes: Routes = [
   {
-    path: 'blogs',
-    loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)
+    path: '',component:LayoutTemplatesFullComponent,
+    children:[
+      {path:'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)}
+    ]
   },
   {path: 'auth',loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRoutingModule)},
-  {path: 'edit', component : AccountEditComponent}
+  {path: 'edit', component : AccountEditComponent},
 ];
 
 @NgModule({

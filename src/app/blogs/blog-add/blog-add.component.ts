@@ -69,7 +69,7 @@ export class BlogAddComponent implements OnInit {
       };
       this.blogService.createBlog(blog).subscribe(data => {
         console.log(data);
-        this.router.navigate(['/blogs']);
+        this.router.navigate(['/blogs/list']);
       });
     }
   }

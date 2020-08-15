@@ -46,7 +46,7 @@ myGroup:FormGroup;
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigate(['/blogs']);
+        this.router.navigate(['/blogs/list']);
         this.tokenStorage.saveStatusWhenUserLogged('logged');
         this.accountService.findAccountById(data.id).subscribe( dataAccount => {
           this.tokenStorage.saveUserAvatar(dataAccount.avatar);
