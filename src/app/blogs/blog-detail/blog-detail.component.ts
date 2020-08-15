@@ -23,7 +23,6 @@ export class BlogDetailComponent implements OnInit {
   getBlogById(){
     this.blogService.getBlogById(this.blogId).subscribe((resp:IBlog)=>{
       this.blog=resp;
-      console.log("ok");
     })
   }
 

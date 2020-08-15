@@ -12,6 +12,7 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {SideRightComponent} from "../multi/side-right/side-right.component";
 import { BlogDeleteComponent } from './blog-delete/blog-delete.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
+import { BlogUserComponent } from './blog-user/blog-user.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
       {path:'list',component: BlogListComponent},
       {path:':id/blogDetail',component:BlogDetailComponent},
       {path: 'create',component: BlogAddComponent},
-      {path: ':id/edit',component:BlogEditComponent}
+      {path: ':id/edit',component:BlogEditComponent},
+      {path: ':id/list',component: BlogUserComponent}
     ]
   },
 ];
@@ -33,7 +35,8 @@ const routes: Routes = [
     BlogAddComponent,
     BlogEditComponent,
     BlogDeleteComponent,
-    BlogListComponent
+    BlogListComponent,
+    BlogUserComponent
   ],
   exports: [
     BlogsComponent
