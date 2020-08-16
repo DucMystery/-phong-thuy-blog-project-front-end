@@ -14,20 +14,21 @@ import {AccountModule} from "./account/account.module";
 import { LogoutComponent } from './auth/logout/logout.component';
 import {HeaderComponent} from './header/header.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
+import {AlbumModule} from "./album/album.module";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LogoutComponent,
     HeaderComponent
-
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule, AlbumModule
+    ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'}
   ],
