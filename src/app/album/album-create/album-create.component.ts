@@ -1,85 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import {finalize} from "rxjs/operators";
-import {AngularFireStorage} from "@angular/fire/storage";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ImageService} from "../../services/albumimage/image.service";
-import {ICategory} from "../../models/icategory";
-import {CategoryService} from "../../services/category.service";
+import {AlbumService} from "../../services/albumimage/album.service";
+import {IAlbum} from "../../models/albumimage/IAlbum";
+import {TokenStorageService} from "../../services/tokenStorage.service";
 
 @Component({
-  selector: 'app-album-create',
+  selector: 'app-album-detail',
   templateUrl: './album-create.component.html',
-  styleUrls: ['./album-create.component.css']
 })
 export class AlbumCreateComponent implements OnInit {
-  imgSrc: string;
-  selectedImage: any = null;
-  isSubmitted: boolean;
-  categories: ICategory[];
-  formTemplate = new FormGroup({
-    caption: new FormControl('', Validators.required),
-    category: new FormControl(''),
-    imageUrl: new FormControl('', Validators.required)
-  })
-
-  constructor(
-    private storage: AngularFireStorage,
-    private service: ImageService,
-    protected  categoryService: CategoryService
-              ) { }
+  createAlbum: FormGroup;
+  album: IAlbum;
+  imageList: any[];
+  rowIndexArray: any[];
+  id : number;
+  constructor(private fb: FormBuilder,
+              private imageService: ImageService,
+              private albumService: AlbumService,
+              private storage: TokenStorageService
+  ) {
+  }
 
   ngOnInit() {
-   this.categoryService.getAll().subscribe(response =>{
-     this.categories = response;
-     console.log(response);
-   });
-    this.resetForm();
-  }
-
-  showPreview(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => this.imgSrc = e.target.result;
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-    }
-    else {
-      this.imgSrc = '../../../assets/img/image_placeholder.jpg';
-      this.selectedImage = null;
-    }
-  }
-
-  onSubmit(formValue) {
-    this.isSubmitted = true;
-    if (this.formTemplate.valid) {
-      var filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            formValue['imageUrl'] = url;
-            this.service.insertImageDetails(formValue);
-            this.resetForm();
-          })
-        })
-      ).subscribe();
-    }
-  }
-
-  get formControls() {
-    return this.formTemplate['controls'];
-  }
-
-  resetForm() {
-    this.formTemplate.reset();
-    this.formTemplate.setValue({
-      caption: '',
-      imageUrl: '',
-      category: ''
+    this.createAlbum = this.fb.group({
+      name: ['', Validators.required],
+      status: ['']
     });
-    this.imgSrc = '/assets/img/image_placeholder.jpg';
-    this.selectedImage = null;
-    this.isSubmitted = false;
+
+
+}
+
+  get name() {
+    return this.createAlbum.get('name');
   }
+  saveAlbum() {
+    let data = this.createAlbum.value;
+    this.album = this.createAlbum.value;
+    this.album.postDate = new Date()
+    this.album.account = this.storage.getAccountId();
+    console.log(this.album);
+    if (data.status==='Public'){
+      this.album.status = true;
+    } else {
+      this.album.status = false;
+    }
+    this.albumService.save(this.album).subscribe( data =>{
+      this.storage.saveAlbumId(data.id);
+
+    });
+
+
+    this.imageService.getImageDetailList(this.album.id, ).subscribe(responseFromImage => {
+      this.imageList = responseFromImage;
+    })
+
+  }
+  submit() {
+
+  }
+
 
 }
