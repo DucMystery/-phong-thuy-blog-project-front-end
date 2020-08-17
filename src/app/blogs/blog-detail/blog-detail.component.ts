@@ -60,7 +60,11 @@ export class BlogDetailComponent implements OnInit {
   //display all the comments
   getAllComment() {
     this.commentService.getAllCommentByBlog(this.blogId).subscribe((resp: Icomment[]) => {
+
       this.comments = resp;
+      // @ts-ignore
+      document.getElementById("comment"+this.blogId).innerHTML=resp;
+
       console.log(this.comments)
 
     });
@@ -80,6 +84,7 @@ export class BlogDetailComponent implements OnInit {
       }
     };
     this.commentService.saveComment(comment).subscribe((resp: Icomment) => {
+      this.getAllComment();
       console.log('điều hướng ở đây');
     });
   }
