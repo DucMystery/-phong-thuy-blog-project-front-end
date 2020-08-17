@@ -39,4 +39,8 @@ export class BlogService {
   getAllBlogById(id: number) : Observable<any[]>{
     return this.http.get<any[]>(this.URL+id+'/listAll');
   }
+
+  getAllBlogOfMe(): Observable<any[]>{
+    return this.http.get<any[]>(this.URL+'list-all-me');
+  }
 }
