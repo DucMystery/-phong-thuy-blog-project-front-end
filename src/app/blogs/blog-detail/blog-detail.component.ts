@@ -85,7 +85,6 @@ export class BlogDetailComponent implements OnInit {
     };
     this.commentService.saveComment(comment).subscribe((resp: Icomment) => {
       this.getAllComment();
-      console.log('điều hướng ở đây');
     });
   }
 
