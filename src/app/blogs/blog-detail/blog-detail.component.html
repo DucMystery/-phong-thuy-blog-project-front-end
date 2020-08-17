@@ -11,9 +11,11 @@
 
             <span [innerHTML]="blog.content"></span>
             <div class="row">
-              <span>
-                <button class="btn btn-primary">Like</button>10 likes
-              </span>
+
+              <div class="col-12">
+
+                <button class="btn btn-primary" (click)="likeSubmit()"> Like <span [id] = "'like'+blog.id">{{blog.amountOfLikes}}</span> </button>
+              </div>
             </div>
             <!--
                                     <h3 class="mb-5 font-weight-bold">6 Comments</h3>-->

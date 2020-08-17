@@ -60,6 +60,7 @@ export class BlogAddComponent implements OnInit {
         status: this.blogForm.value.status,
         title: this.blogForm.value.title,
         content: markupStr,
+        amountOfLikes: 0,
         category: {
           id: this.blogForm.value.category
         },

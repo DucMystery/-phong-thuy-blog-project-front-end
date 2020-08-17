@@ -7,6 +7,8 @@ import {CommentService} from '../../services/comment.service';
 import {Icomment} from '../../models/icomment';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {TokenStorageService} from '../../services/tokenStorage.service';
+import {ILike} from '../../models/iLike';
+import {LikeService} from '../../services/like.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -24,8 +26,11 @@ export class BlogDetailComponent implements OnInit {
     blog: new FormControl('')
   });
 
-  idBlog: number;
+  // idBlog: number;
   idAccount: number;
+
+  like: ILike;
+  likeNumber:number;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -33,7 +38,8 @@ export class BlogDetailComponent implements OnInit {
               private commentService: CommentService,
               private fb: FormBuilder,
               private storage: TokenStorageService,
-              private route:Router
+              private route: Router,
+              private likeService: LikeService
   ) {
   }
 
@@ -47,35 +53,60 @@ export class BlogDetailComponent implements OnInit {
   getBlogById() {
     this.blogService.getBlogById(this.blogId).subscribe((resp: IBlog) => {
       this.blog = resp;
-      console.log(this.blog.title);
+
     });
   }
-
 
   //display all the comments
   getAllComment() {
     this.commentService.getAllCommentByBlog(this.blogId).subscribe((resp: Icomment[]) => {
       this.comments = resp;
-      console.log(this.comments);
+      console.log(this.comments)
+
     });
   }
 
   postComment() {
-    let date=new Date();
+    let date = new Date();
 
     const comment: Icomment = {
       content: this.commentForm.value.content,
       time: date.getDate(),
-      account:{
-        id:this.storage.getAccountId()
+      account: {
+        id: this.storage.getAccountId()
       },
       blog: {
         id: this.blogId
       }
     };
-    this.commentService.saveComment(comment).subscribe((resp:Icomment)=>{
-      this.route.navigate(['blogs']);
-      console.log('điều hướng ở đây')
+    this.commentService.saveComment(comment).subscribe((resp: Icomment) => {
+      console.log('điều hướng ở đây');
+    });
+  }
+
+
+  likeSubmit() {
+    const likes: ILike = {
+
+      account: {
+        id: this.storage.getAccountId()
+      },
+      blog: {
+        id: this.blogId
+
+      }
+    };
+    this.likeService.likeSubmit(likes).subscribe((resp: ILike) => {
+      this.like = resp;
+      this.getLikeByBlog();
+      // console.log(this.like);
+    });
+  }
+
+  getLikeByBlog() {
+    this.likeService.getLikeByBlog(this.blogId).subscribe((resp: IBlog) => {
+      document.getElementById('like'+this.blogId).innerHTML=String(resp.amountOfLikes);
+      console.log(this.likeNumber);
     });
   }
 }
