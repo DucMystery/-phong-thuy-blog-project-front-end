@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlbumCreateComponent } from './album-create.component';
 
-describe('AlbumCreateComponent', () => {
+describe('AlbumDetailComponent', () => {
   let component: AlbumCreateComponent;
   let fixture: ComponentFixture<AlbumCreateComponent>;
 
