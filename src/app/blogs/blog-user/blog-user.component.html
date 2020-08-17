@@ -5,7 +5,7 @@
         <div class="col-xl-8 py-5 px-md-5">
           <div class="row pt-md-4">
             <!--            đây là phần body của blogs.hiển thị các blog-->
-            <div class="col-md-12" *ngFor="let blog of blogs">
+            <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:6,currentPage: page}">
               <div class="blog-entry ftco-animate d-md-flex">
                 <img [routerLink]="['/blogs',blog.account.id,'list']" class="img img-2" src="{{blog.account.avatar}}"/>
                 <div class="text text-2 pl-md-4">
@@ -27,19 +27,20 @@
 
           <!--      negative    đây sẽ là phần phân trang của blog-->
           <div class="row">
-            <div class="col">
-              <div class="block-27">
-                <ul>
-                  <li><a href="#">&lt;</a></li>
-                  <li class="active"><span>1</span></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">&gt;</a></li>
-                </ul>
-              </div>
-            </div>
+            <pagination-controls  id="blog-list" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+<!--            <div class="col">-->
+<!--              <div class="block-27">-->
+<!--                <ul>-->
+<!--                  <li><a href="#">&lt;</a></li>-->
+<!--                  <li class="active"><span>1</span></li>-->
+<!--                  <li><a href="#">2</a></li>-->
+<!--                  <li><a href="#">3</a></li>-->
+<!--                  <li><a href="#">4</a></li>-->
+<!--                  <li><a href="#">5</a></li>-->
+<!--                  <li><a href="#">&gt;</a></li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
 
           <!--          kết thúc phân trang-->
@@ -83,66 +84,62 @@
 
           <div class="sidebar-box ftco-animate">
             <h3 class="sidebar-heading">Categories</h3>
-            <ul class="categories">
-              <li><a href="#">Fashion <span>(6)</span></a></li>
-              <li><a href="#">Technology <span>(8)</span></a></li>
-              <li><a href="#">Travel <span>(2)</span></a></li>
-              <li><a href="#">Food <span>(2)</span></a></li>
-              <li><a href="#">Photography <span>(7)</span></a></li>
+            <ul class="categories" *ngFor="let category of categories">
+              <li><a href="#">{{category.name}} <span>(6)</span></a></li>
             </ul>
           </div>
 
-          <div class="sidebar-box ftco-animate">
-            <h3 class="sidebar-heading">Popular Articles</h3>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4"><img
-                src="../../assets/static/images/image_1.jpg" height="566" width="800"/></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url('../../assets/static/images/image_2.jpg');"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="blog-img mr-4" style="background-image: url('../../assets/static/images/image_3.jpg');"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
+<!--          <div class="sidebar-box ftco-animate">-->
+<!--            <h3 class="sidebar-heading">Popular Articles</h3>-->
+<!--            <div class="block-21 mb-4 d-flex">-->
+<!--              <a class="blog-img mr-4"><img-->
+<!--                src="../../assets/static/images/image_1.jpg" height="566" width="800"/></a>-->
+<!--              <div class="text">-->
+<!--                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>-->
+<!--                <div class="meta">-->
+<!--                  <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>-->
+<!--                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>-->
+<!--                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="block-21 mb-4 d-flex">-->
+<!--              <a class="blog-img mr-4" style="background-image: url('../../assets/static/images/image_2.jpg');"></a>-->
+<!--              <div class="text">-->
+<!--                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>-->
+<!--                <div class="meta">-->
+<!--                  <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>-->
+<!--                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>-->
+<!--                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="block-21 mb-4 d-flex">-->
+<!--              <a class="blog-img mr-4" style="background-image: url('../../assets/static/images/image_3.jpg');"></a>-->
+<!--              <div class="text">-->
+<!--                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>-->
+<!--                <div class="meta">-->
+<!--                  <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>-->
+<!--                  <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>-->
+<!--                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="sidebar-box ftco-animate">
-            <h3 class="sidebar-heading">Tag Cloud</h3>
-            <ul class="tagcloud">
-              <a href="#" class="tag-cloud-link">animals</a>
-              <a href="#" class="tag-cloud-link">human</a>
-              <a href="#" class="tag-cloud-link">people</a>
-              <a href="#" class="tag-cloud-link">cat</a>
-              <a href="#" class="tag-cloud-link">dog</a>
-              <a href="#" class="tag-cloud-link">nature</a>
-              <a href="#" class="tag-cloud-link">leaves</a>
-              <a href="#" class="tag-cloud-link">food</a>
-            </ul>
-          </div>
+<!--          <div class="sidebar-box ftco-animate">-->
+<!--            <h3 class="sidebar-heading">Tag Cloud</h3>-->
+<!--            <ul class="tagcloud">-->
+<!--              <a href="#" class="tag-cloud-link">animals</a>-->
+<!--              <a href="#" class="tag-cloud-link">human</a>-->
+<!--              <a href="#" class="tag-cloud-link">people</a>-->
+<!--              <a href="#" class="tag-cloud-link">cat</a>-->
+<!--              <a href="#" class="tag-cloud-link">dog</a>-->
+<!--              <a href="#" class="tag-cloud-link">nature</a>-->
+<!--              <a href="#" class="tag-cloud-link">leaves</a>-->
+<!--              <a href="#" class="tag-cloud-link">food</a>-->
+<!--            </ul>-->
+<!--          </div>-->
 
           <div class="sidebar-box subs-wrap img py-4"
                style="background-image: url('../../assets/static/images/bg_1.jpg');">

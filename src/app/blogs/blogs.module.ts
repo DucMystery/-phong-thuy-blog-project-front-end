@@ -13,6 +13,8 @@ import {SideRightComponent} from "../multi/side-right/side-right.component";
 import { BlogDeleteComponent } from './blog-delete/blog-delete.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { BlogUserComponent } from './blog-user/blog-user.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { BlogErrorComponent } from './blog-error/blog-error.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
       {path:':id/blogDetail',component:BlogDetailComponent},
       {path: 'create',component: BlogAddComponent},
       {path: ':id/edit',component:BlogEditComponent},
-      {path: ':id/list',component: BlogUserComponent}
+      {path: ':id/list',component: BlogUserComponent},
+      {path: 'error',component: BlogErrorComponent}
     ]
   },
 ];
@@ -36,7 +39,8 @@ const routes: Routes = [
     BlogEditComponent,
     BlogDeleteComponent,
     BlogListComponent,
-    BlogUserComponent
+    BlogUserComponent,
+    BlogErrorComponent
   ],
   exports: [
     BlogsComponent
@@ -48,6 +52,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     AngularEditorModule,
+    NgxPaginationModule
   ]
 })
 export class BlogsModule {

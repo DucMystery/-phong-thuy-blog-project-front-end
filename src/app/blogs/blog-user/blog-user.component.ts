@@ -3,6 +3,7 @@ import {IBlog} from '../../models/iblog';
 import {BlogService} from '../../services/blog.service';
 import {TokenStorageService} from '../../services/tokenStorage.service';
 import {ActivatedRoute} from '@angular/router';
+import {CategoryService} from '../../services/category.service';
 declare var $: any;
 @Component({
   selector: 'app-blog-user',
@@ -15,16 +16,26 @@ export class BlogUserComponent implements OnInit {
   blogs: IBlog[];
   avatarUrl: string;
   isLoggedIn: boolean;
+  categories: any[];
+  page: number = 1;
   constructor(private blogService: BlogService,
               private storageToken: TokenStorageService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private categoryService: CategoryService) {
     this.id = +this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
     this.getAllBlogByIdAccount();
+    this.getAllCateories();
     this.isLoggedIn= this.storageToken.getStatusLoggedOrLogout();
     this.avatarUrl = this.storageToken.getUserAvartar();
+  }
+
+  getAllCateories(){
+    this.categoryService.getAll().subscribe((response:any[]) =>{
+      this.categories = response;
+    })
   }
 
   getAllBlogByIdAccount(){
