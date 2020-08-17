@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 import {BlogsComponent} from './blogs.component';
 import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import { HeaderComponent } from '../header/header.component';
@@ -15,6 +15,7 @@ import { BlogListComponent } from './blog-list/blog-list.component';
 import { BlogUserComponent } from './blog-user/blog-user.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogErrorComponent } from './blog-error/blog-error.component';
+import {AuthGuard} from '../_interceptor/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,13 +24,14 @@ const routes: Routes = [
       {path:'list',component: BlogListComponent},
       {path:':id/blogDetail',component:BlogDetailComponent},
       {path: 'create',component: BlogAddComponent},
-      {path: ':id/edit',component:BlogEditComponent},
-      {path: ':id/list',component: BlogUserComponent},
+      {path: ':id/edit',component:BlogEditComponent,canActivate:[AuthGuard]},
+      {path: ':id/list',component: BlogUserComponent,canActivate:[AuthGuard]},
       {path: 'error',component: BlogErrorComponent}
     ]
   },
 ];
 
+// @ts-ignore
 @NgModule({
   declarations: [
     BlogsComponent,
@@ -52,7 +54,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     AngularEditorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class BlogsModule {

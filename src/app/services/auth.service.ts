@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable,EventEmitter} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../models/IUser';
@@ -11,15 +11,17 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  private currentUSerSubject: BehaviorSubject<any>;
-  public currentUser : Observable<any>;
+  private currentUserSubject: BehaviorSubject<IUser>;
+  public currentUser: Observable<IUser>;
+  update = new EventEmitter<string>();
+
   constructor(private http: HttpClient) {
-    this.currentUSerSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem("currentUser")));
-    this.currentUser = this.currentUSerSubject.asObservable();
+    this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue():any {
-    return this.currentUSerSubject.value;
+  public get currentUserValue(): IUser {
+    return this.currentUserSubject.value;
   }
 
   login(credentials): Observable<any> {
@@ -32,6 +34,8 @@ export class AuthService {
   register(user: IUser): Observable<any> {
     return this.http.post(AUTH_API + 'api/accounts/create', user);
   }
+
+
   logout(){
     return this.http.get(AUTH_API+'logout');
   }

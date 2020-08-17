@@ -6,7 +6,7 @@
         <div class="col-xl-8 py-5 px-md-5">
           <div class="row pt-md-4">
             <!--            đây là phần body của blogs.hiển thị các blog-->
-            <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:6,currentPage: page}">
+            <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:4,currentPage: page}">
               <div class="blog-entry ftco-animate d-md-flex">
                 <img [routerLink]="['/blogs',blog.account.id,'list']" class="img img-2" src="{{blog.account.avatar}}"/>
                 <div class="text text-2 pl-md-4">
@@ -18,8 +18,11 @@
                       <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
                     </p>
                   </div>
-                  <p class="mb-4"></p>
-                  <p><a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                  <p class="mb-4 row"></p>
+                  <p>
+                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More      <span class="ion-ios-arrow-forward"></span></a>
+                           <a [routerLink]="['/blogs',blog.account.id,'edit']" class="btn-custom">Edit<span class="ion-ios-arrow-forward"></span></a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -32,7 +35,7 @@
 <!--              <div class="block-27">-->
 <!--                <ul>-->
 <!--                  <li><a href="#">&lt;</a></li>-->
-                  <pagination-controls  id="blog-list" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                  <pagination-controls  id="blog-list" directionLinks="true" (pageChange)="changePage($event)"></pagination-controls>
 <!--                  <li class="active"><span>1</span></li>-->
 <!--                  <li><a href="#">2</a></li>-->
 <!--                  <li><a href="#">3</a></li>-->
