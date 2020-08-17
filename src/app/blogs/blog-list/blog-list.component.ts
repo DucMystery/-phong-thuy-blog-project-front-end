@@ -4,6 +4,7 @@ import {IUser} from '../../models/IUser';
 import {BlogService} from '../../services/blog.service';
 import {TokenStorageService} from '../../services/tokenStorage.service';
 import {AccountService} from '../../services/account.service';
+import {CategoryService} from '../../services/category.service';
 
 declare var $: any;
 
@@ -18,13 +19,18 @@ export class BlogListComponent implements OnInit {
   isLoggedIn: boolean;
   avatarUrl: string;
   accounts: IUser[];
+  categories: any[];
+
+  page: number =1;
   constructor(private blogService: BlogService,
               private storage: TokenStorageService,
+              private categoryService: CategoryService
   ) {
   }
 
   ngOnInit(): void {
     this.getAllBlogs();
+    this.getAllCategories();
     console.log(this.blogs)
     this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
     this.avatarUrl = this.storage.getUserAvartar();
@@ -81,6 +87,12 @@ export class BlogListComponent implements OnInit {
         loader();
       })
     });
+  }
+
+  getAllCategories(){
+    this.categoryService.getAll().subscribe((response: any[]) =>{
+      this.categories = response;
+    })
   }
 
 }

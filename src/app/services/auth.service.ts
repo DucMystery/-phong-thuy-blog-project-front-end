@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../models/IUser';
 
 const AUTH_API = 'http://localhost:8080/';
@@ -10,7 +10,16 @@ const httpOptions = {
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+
+  private currentUSerSubject: BehaviorSubject<any>;
+  public currentUser : Observable<any>;
   constructor(private http: HttpClient) {
+    this.currentUSerSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem("currentUser")));
+    this.currentUser = this.currentUSerSubject.asObservable();
+  }
+
+  public get currentUserValue():any {
+    return this.currentUSerSubject.value;
   }
 
   login(credentials): Observable<any> {
