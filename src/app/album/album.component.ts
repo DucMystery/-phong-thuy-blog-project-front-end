@@ -11,7 +11,7 @@ export class AlbumComponent implements OnInit {
   constructor(private service:ImageService) { }
 
   ngOnInit() {
-    this.service.getImageDetailList();
+    // this.service.getImageDetailList();
   }
 
 }

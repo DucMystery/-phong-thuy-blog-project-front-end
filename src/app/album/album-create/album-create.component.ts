@@ -11,10 +11,9 @@ import {TokenStorageService} from "../../services/tokenStorage.service";
   templateUrl: './album-create.component.html',
 })
 export class AlbumCreateComponent implements OnInit {
-  createAlbum: FormGroup;
   album: IAlbum;
-  imageList: any[];
-  rowIndexArray: any[];
+  createAlbum: FormGroup;
+  imageList: any[] =[];
   id : number;
   constructor(private fb: FormBuilder,
               private imageService: ImageService,
@@ -28,7 +27,7 @@ export class AlbumCreateComponent implements OnInit {
       name: ['', Validators.required],
       status: ['']
     });
-
+    this.saveAlbum();
 
 }
 
@@ -36,18 +35,20 @@ export class AlbumCreateComponent implements OnInit {
     return this.createAlbum.get('name');
   }
   saveAlbum() {
+
     let data = this.createAlbum.value;
-    this.album = this.createAlbum.value;
-    this.album.postDate = new Date()
-    this.album.account = this.storage.getAccountId();
-    console.log(this.album);
-    if (data.status==='Public'){
-      this.album.status = true;
-    } else {
-      this.album.status = false;
-    }
+
+    // this.album.name= data.name;
+    // this.album.postDate = new Date();
+    // this.album.account = this.storage.getAccountId();
+    // console.log(this.album);
+    // if(data.status==='Public'){
+    //   this.album.status = true;
+    // } else {
+    //   this.album.status = false;
+    // }
     this.albumService.save(this.album).subscribe( data =>{
-      this.storage.saveAlbumId(data.id);
+
 
     });
 
