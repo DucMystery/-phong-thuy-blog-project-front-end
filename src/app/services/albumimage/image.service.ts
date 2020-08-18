@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 import {IAlbum} from "../../models/albumimage/IAlbum";
 import {IImage} from "../../models/albumimage/IImage";
 
-const IMAGES_API = 'http://localhost:8080/api/v1/images/';
+const IMAGES_API = 'http://localhost:8000/api/v1/images/';
 
 @Injectable({
   providedIn: 'root'
