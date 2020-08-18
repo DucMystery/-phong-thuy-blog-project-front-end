@@ -31,7 +31,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(user: IUser): Observable<any> {
+  register(user: any): Observable<any> {
     return this.http.post(AUTH_API + 'api/accounts/create', user);
   }
 

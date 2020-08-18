@@ -10,4 +10,5 @@ export interface IUser {
   status?: boolean;
   avatar?: string;
   accessToken?: any;
+  nickName?:string;
 }

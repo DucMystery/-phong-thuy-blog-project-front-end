@@ -7,6 +7,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {LogoutComponent} from "./logout/logout.component";
 
+
 const routes: Routes = [
   {path:'login',component: LoginComponent},
   {path:'register',component:RegitrationComponent},
@@ -22,7 +23,7 @@ const routes: Routes = [
     RouterModule.forChild(routes), FormsModule
 
   ],
-  providers: [],
+providers: [],
 })
 export class AuthRoutingModule {
 
