@@ -17,11 +17,14 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {AlbumModule} from "./album/album.module";
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LogoutComponent,
-    HeaderComponent
+    HeaderComponent,
+
   ],
     imports: [
         BrowserModule,

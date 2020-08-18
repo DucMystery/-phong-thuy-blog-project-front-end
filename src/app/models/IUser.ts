@@ -9,4 +9,5 @@ export interface IUser {
   birthDay?: Date;
   status?: boolean;
   avatar?: string;
+  nickName?:string;
 }
