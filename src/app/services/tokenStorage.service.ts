@@ -4,7 +4,7 @@ const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const USER_AVATAR ='user-avatar';
 const LOGGED_STATUS='logged-status';
-const AlBUM_ID = 'album_id';
+const IMAGES_LIST = 'image-list';
 @Injectable({providedIn: 'root'})
 export class TokenStorageService {
   constructor() {
@@ -21,16 +21,23 @@ export class TokenStorageService {
     window.sessionStorage.removeItem((LOGGED_STATUS));
     window.sessionStorage.setItem(LOGGED_STATUS,status);
   }
-  public saveAlbumId(albumId: string) {
-    window.sessionStorage.removeItem((AlBUM_ID));
-    window.sessionStorage.setItem(AlBUM_ID,albumId);
+  // public saveAlbumId(albumId: string) {
+  //   window.sessionStorage.removeItem((AlBUM_ID));
+  //   window.sessionStorage.setItem(AlBUM_ID,albumId);
+  // }
+  public saveImagesList(srcImg : string) {
+    window.sessionStorage.removeItem(IMAGES_LIST);
+    window.sessionStorage.setItem(IMAGES_LIST, srcImg);
+  }
+  public getImageList() :string {
+    return sessionStorage.getItem(IMAGES_LIST);
   }
   public getUserAvartar(): string {
     return sessionStorage.getItem(USER_AVATAR);
   }
-  public getUlbumId() : string {
-    return sessionStorage.getItem(AlBUM_ID);
-  }
+  // public getUlbumId() : string {
+  //   return sessionStorage.getItem(AlBUM_ID);
+  // }
   public getStatusLoggedOrLogout() : boolean {
     if(sessionStorage.getItem(LOGGED_STATUS) === 'logged'){
       return true;
@@ -51,6 +58,7 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, id);
   }
+
 
   public getAccountId() {
     //sau thu bo Json parse xem chuong trinh co chay khong

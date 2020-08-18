@@ -14,8 +14,6 @@ const IMAGES_API = 'http://localhost:8080/api/v1/images/';
 })
 export class ImageService {
 
-  imageDetailList: AngularFireList<any>;
-
   constructor(private http: HttpClient) { }
 
   getImageDetailList(albumId: number):Observable<any> {
