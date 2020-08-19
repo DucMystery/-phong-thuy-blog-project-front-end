@@ -28,12 +28,12 @@ import {AlbumModule} from "./album/album.module";
     LayoutTemplatesFullComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule, AlbumModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule, FormsModule, ReactiveFormsModule, BlogsModule
+  ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntorceptor, multi: true},

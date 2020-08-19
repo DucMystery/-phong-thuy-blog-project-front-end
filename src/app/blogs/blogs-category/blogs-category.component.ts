@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IBlog} from '../../models/iblog';
 import {BlogService} from '../../services/blog.service';
 import {TokenStorageService} from '../../services/tokenStorage.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import {IBlogResponse} from '../../models/iblog-response';
 declare var $: any;
@@ -23,11 +23,13 @@ export class BlogsCategoryComponent implements OnInit {
               private storageToken: TokenStorageService,
               private route: ActivatedRoute,
               private categoryService: CategoryService) {
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.route.paramMap.subscribe((pramMap: ParamMap)=>{
+      this.id = +pramMap.get('id');
+      this.getAllBlogByCategoryId(this.id);
+    })
   }
 
   ngOnInit(): void {
-    this.getAllBlogByCategoryId();
     this.getAllCateories();
     this.isLoggedIn= this.storageToken.getStatusLoggedOrLogout();
     this.avatarUrl = this.storageToken.getUserAvartar();
@@ -39,8 +41,8 @@ export class BlogsCategoryComponent implements OnInit {
     })
   }
 
-  getAllBlogByCategoryId(){
-      this.blogService.getAllBlogByCategoryId(this.id).subscribe((response: IBlogResponse[]) => {
+  getAllBlogByCategoryId(id){
+      this.blogService.getAllBlogByCategoryId(id).subscribe((response: IBlogResponse[]) => {
         this.blogs = response;
         this.blogs.map(blog => {
           blog.postTime = new Date(blog.postTime);

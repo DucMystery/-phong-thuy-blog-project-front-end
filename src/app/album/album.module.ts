@@ -8,8 +8,9 @@ import {environment} from "../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AlbumCreateComponent} from "./album-create/album-create.component";
+import {AuthGuard} from '../_interceptor/auth.guard';
 const routes: Routes = [
-  {path:"upload", component:AlbumCreateComponent }
+  {path:"upload", component:AlbumCreateComponent,canActivate: [AuthGuard]}
   ];
 
 @NgModule({
