@@ -21,8 +21,8 @@
                   </div>
                   <p class="mb-4 row"></p>
                   <p>
-                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More      <span class="ion-ios-arrow-forward"></span></a>
-                           <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn-custom">Edit<span class="ion-ios-arrow-forward"></span></a>
+                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More      <span class="glyphicon glyphicon-hand-right"></span></a>
+                           <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn-custom" style="padding-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
                   </p>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                   <div class="dropdown col-xs-6">
                     <i class="dropbtn">Hello!{{account.firstName}} {{account.lastName}}</i>
                     <div class="dropdown-content">
-                      <a routerLink="/edit">Profile</a>
+                      <a routerLink="/accounts/edit">Profile</a>
                       <a class="btn btn-danger" routerLink="/auth/logout">Log Out</a>
                     </div>
                   </div>
