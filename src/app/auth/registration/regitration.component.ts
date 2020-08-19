@@ -66,7 +66,7 @@ export class RegitrationComponent implements OnInit {
      const dataJson = this.registerForm.value;
     this.authService.register(dataJson).subscribe(result=>{
       console.log(result);
-      alert('REGISTER SUCCCESSS ! \n\n' + "Respon form htttp " +JSON.stringify(result))
+      alert('REGISTER SUCCCESSS ! \n\n' + "Response form htttp " +JSON.stringify(result))
       this.route.navigate(['auth/login'])
     })
   }
