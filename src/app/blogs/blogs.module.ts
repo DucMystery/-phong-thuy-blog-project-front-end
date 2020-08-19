@@ -48,7 +48,8 @@ const routes: Routes = [
     BlogsCategoryComponent
   ],
   exports: [
-    BlogsComponent
+    BlogsComponent,
+    SideRightComponent
   ],
   imports: [
     CommonModule,

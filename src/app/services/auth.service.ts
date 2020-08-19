@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../models/IUser';
 
-const AUTH_API = 'http://localhost:8080/';
+const AUTH_API = 'http://localhost:8000/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -31,7 +31,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(user: IUser): Observable<any> {
+  register(user: any): Observable<any> {
     return this.http.post(AUTH_API + 'api/accounts/create', user);
   }
 

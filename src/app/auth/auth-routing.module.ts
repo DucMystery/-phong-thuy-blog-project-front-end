@@ -5,10 +5,8 @@ import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
-import {AppRoutingModule} from "../app-routing.module";
-import {AppComponent} from "../app.component";
-import {environment} from "../../environments/environment";
 import {LogoutComponent} from "./logout/logout.component";
+
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
@@ -25,7 +23,7 @@ const routes: Routes = [
     RouterModule.forChild(routes), FormsModule
 
   ],
-  providers: [],
+providers: [],
 })
 export class AuthRoutingModule {
 

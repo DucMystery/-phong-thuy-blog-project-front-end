@@ -14,6 +14,11 @@ import {AccountModule} from "./account/account.module";
 import { LogoutComponent } from './auth/logout/logout.component';
 import {HeaderComponent} from './header/header.component';
 import { LayoutTemplatesFullComponent } from './layout-templates-full/layout-templates-full.component';
+// import {AngularEditorModule} from '@kolkov/angular-editor';
+import {AlbumModule} from "./album/album.module";
+
+
+
 
 @NgModule({
   declarations: [
@@ -23,12 +28,12 @@ import { LayoutTemplatesFullComponent } from './layout-templates-full/layout-tem
     LayoutTemplatesFullComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        RouterModule, FormsModule, ReactiveFormsModule, AccountModule, BlogsModule, AlbumModule
+    ],
   providers: [authInterceptorProviders,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthIntorceptor, multi: true},
