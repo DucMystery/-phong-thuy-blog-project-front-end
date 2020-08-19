@@ -11,16 +11,16 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  private currentUserSubject: BehaviorSubject<IUser>;
-  public currentUser: Observable<IUser>;
+  private currentUserSubject: BehaviorSubject<String>;
+  public currentUser: Observable<String>;
   update = new EventEmitter<string>();
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<String>(sessionStorage.getItem('auth-token'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): IUser {
+  public get currentUserValue(): String {
     return this.currentUserSubject.value;
   }
 

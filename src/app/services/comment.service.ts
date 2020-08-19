@@ -22,4 +22,5 @@ export class CommentService {
   saveComment(comment:any):Observable<Icomment>{
     return this.http.post<Icomment>(this.url+'add',comment);
   }
+
 }
