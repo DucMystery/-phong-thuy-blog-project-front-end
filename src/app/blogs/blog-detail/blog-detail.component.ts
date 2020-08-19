@@ -9,6 +9,8 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {TokenStorageService} from '../../services/tokenStorage.service';
 import {ILike} from '../../models/iLike';
 import {LikeService} from '../../services/like.service';
+import {HttpClient} from '@angular/common/http';
+import {IEmail} from '../../models/iemail';
 
 @Component({
   selector: 'app-blog-detail',
@@ -16,8 +18,10 @@ import {LikeService} from '../../services/like.service';
   styleUrls: ['./blog-detail.component.css']
 })
 export class BlogDetailComponent implements OnInit {
+  shareForm: FormGroup;
   blog: IBlog = null;
   comments: Icomment[];
+  public href: string = "";
   commentForm: FormGroup = new FormGroup({
     id: new FormControl(''),
     time: new FormControl(''),
@@ -39,7 +43,8 @@ export class BlogDetailComponent implements OnInit {
               private fb: FormBuilder,
               private storage: TokenStorageService,
               private route: Router,
-              private likeService: LikeService
+              private likeService: LikeService,
+              private client: HttpClient
   ) {
   }
 
@@ -48,6 +53,26 @@ export class BlogDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getBlogById();
     this.getAllComment();
+    this.shareForm = this.fb.group({
+      email: [''],
+    });
+  }
+
+  onSubmit() {
+    this.href = window.location.href;
+    const data = {
+      email: this.shareForm.value.email,
+      href : this.href
+    };
+    this.client.post('http://localhost:8080/sendSimpleEmail', data).subscribe(
+      (response: IEmail) => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }
+    );
+    // console.log(this.router.url);
+    console.log(window.location.href);
   }
 
   getBlogById() {

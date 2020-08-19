@@ -14,8 +14,12 @@
 
               <div class="col-12">
 
-                <button class="btn btn-primary" (click)="likeSubmit()"> Like <span [id] = "'like'+blog.id">{{blog.amountOfLikes}}</span> </button>
+                <button class="btn btn-primary col-sm-5" (click)="likeSubmit()"> Like <span [id] = "'like'+blog.id">{{blog.amountOfLikes}}</span> </button>
               </div>
+              <form [formGroup]="shareForm" (ngSubmit)="onSubmit()" novalidate class="col-sm-7">
+                <input class="form-control" type="email" id="example-url-twt" formControlName="email">
+                <button>Submit</button>
+              </form>
             </div>
             <hr/>
             <!--

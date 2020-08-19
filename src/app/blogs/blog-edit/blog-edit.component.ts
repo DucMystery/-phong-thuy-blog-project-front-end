@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ICategory} from '../../models/icategory';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,6 +11,7 @@ import {AccountService} from '../../services/account.service';
 import {Observable} from 'rxjs';
 
 declare var $: any;
+
 @Component({
   selector: 'app-blog-edit',
   templateUrl: './blog-edit.component.html',
@@ -18,7 +19,7 @@ declare var $: any;
 })
 export class BlogEditComponent implements OnInit {
 
-  myArray: Array<boolean> = [true,false];
+  myArray: Array<boolean> = [true, false];
   myDefault: Boolean = this.myArray[0];
   account: Observable<any> = this.accountService.findAccountById(this.tokenStorageService.getAccountId());
 
@@ -32,6 +33,7 @@ export class BlogEditComponent implements OnInit {
 
 
   });
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
@@ -40,41 +42,45 @@ export class BlogEditComponent implements OnInit {
               private tokenStorageService: TokenStorageService,
               private accountService: AccountService) {
   }
+
   id = +this.route.snapshot.paramMap.get('id');
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe((resp: ICategory[]) =>{
-      this.categories =resp
-    })
-    if (this.tokenStorageService.getAccountId() == this.id){this.findById()}else {this.router.navigate(['/blogs/error'])};
+    this.categoryService.getAll().subscribe((resp: ICategory[]) => {
+      this.categories = resp;
+    });
+    if (this.tokenStorageService.getAccountId() == this.id) {
+      this.findById();
+    } else {
+      this.router.navigate(['/blogs/error']);
+    }
 
-    $(function() {
-      $('#summernote').summernote();
+  }
+
+  findById() {
+    this.blogService.getBlogById(this.id).subscribe((resp: IBlog) => {
+      this.blogEditForm.patchValue(resp);
+      $(function() {
+        $('#summernote').summernote('code', resp.content);
+      });
     });
   }
 
-  findById(){
-
-    this.blogService.getBlogById(this.id).subscribe((resp: IBlog) =>{
-      this.blogEditForm.patchValue(resp);
-    })
-  }
-
   update() {
-    if (this.blogEditForm.valid){
+    if (this.blogEditForm.valid) {
       var markupStr = $('#summernote').summernote('code');
       const blog: IBlog = {
         id: this.id,
         title: this.blogEditForm.value.title,
         content: markupStr,
         status: this.blogEditForm.value.status,
-        amountOfLikes:this.blogEditForm.value.amountOfLikes,
+        amountOfLikes: this.blogEditForm.value.amountOfLikes,
         category: {
           id: this.blogEditForm.value.category
         }
-      }
-      this.blogService.updateBlog(this.id,blog).subscribe(data =>{
-        this.router.navigate(['/blogs/list'])
+      };
+      this.blogService.updateBlog(this.id, blog).subscribe(data => {
+        this.router.navigate(['/blogs/list']);
       });
     }
   }
