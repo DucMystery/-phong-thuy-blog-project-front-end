@@ -39,6 +39,13 @@ export class ImagesComponent implements OnInit {
       console.log(this.images);
     })
   }
+
+
+
+
+
+
+
   onSubmit() {
     this.href = window.location.href;
     const data = {
