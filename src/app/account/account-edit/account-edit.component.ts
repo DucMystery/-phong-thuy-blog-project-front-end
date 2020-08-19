@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../services/tokenStorage.service";
 import {IUser} from "../../models/IUser";
 import {Router} from "@angular/router";
+import {BlogService} from "../../services/blog.service";
 
 @Component({
   selector: 'app-account-edit',
@@ -22,13 +23,14 @@ export class AccountEditComponent implements OnInit {
   account: IUser;
   updatedAccount = false;
   currentAccount: IUser;
-
+  totalBlogByAccount: number;
   constructor(
     private storage: AngularFireStorage,
     private fb: FormBuilder,
     private  accountService: AccountService,
     private tokenStorageService: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private blogService: BlogService
   ) {
 
   }
@@ -52,9 +54,13 @@ export class AccountEditComponent implements OnInit {
       this.imgSrc = '../../assets/static/images/avatar_account_default.jpg';
     }
     this.editAccount.patchValue(this.account);
-    // this.getAccount();
 
-
+    // Tim kiem so bai viet Blog theo account
+    console.log(this.account.id);
+     this.blogService.getAllBlogByAccount_Id(this.account.id).subscribe(result =>{
+       this.totalBlogByAccount = result.length;
+       console.log(this.totalBlogByAccount);
+     });
   }
 
   submitEditAccount(id, account: any) {

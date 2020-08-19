@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {$} from 'protractor';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from '../../services/blog.service';
 import {IBlog} from '../../models/iblog';
