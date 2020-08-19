@@ -13,10 +13,10 @@
                   <h3 class="mb-2"><a [routerLink]="['/blogs',blog,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
-                      <span><i class="icon-calendar mr-2"></i>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
-                      <span><a [routerLink]="[blog.id,'blogDetail']"><i class="icon-folder-o mr-2">{{blog.nameCategory}}</i></a></span>
-                      <span><i class="icon-comment2 mr-2"></i>{{blog.amountComment}}  Comment</span>
-                      <span><i class="icon-comment2 mr-2"></i>{{blog.likes}}  Like</span>
+                      <span>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
+                      <span><a [routerLink]="[blog.id,'blogDetail']">{{blog.nameCategory}}</a></span>
+                      <span><i class="	glyphicon glyphicon-list-alt"></i>{{blog.amountComment}}  Comment</span>
+                      <span>{{blog.likes}}  Like</span>
                     </p>
                   </div>
                   <p class="mb-4 row"></p>

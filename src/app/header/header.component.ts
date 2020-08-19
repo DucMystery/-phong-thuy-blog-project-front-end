@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AccountService} from '../services/account.service';
+import {TokenStorageService} from '../services/tokenStorage.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,12 @@ import {AccountService} from '../services/account.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private accountService: AccountService) {}
+  isLoggedIn: boolean;
+  constructor(private accountService: AccountService,
+              private storage: TokenStorageService) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.storage.getStatusLoggedOrLogout();
   }
 
 }
