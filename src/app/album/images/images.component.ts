@@ -54,13 +54,15 @@ export class ImagesComponent implements OnInit {
     };
     this.client.post('http://localhost:8080/sendSimpleEmail', data).subscribe(
       (response: Email) => {
-        console.log(response);
+        alert("shared image list" +response);
       }, error => {
         console.log(error);
       }
     );
     // console.log(this.router.url);
-    console.log(window.location.href);
+    // console.log(window.location.href)
+
+
   }
 
 
