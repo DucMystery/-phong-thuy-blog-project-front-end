@@ -5,6 +5,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import {BlogService} from '../../services/blog.service';
 import {IBlog} from '../../models/iblog';
+import {TokenStorageService} from '../../services/tokenStorage.service';
+import {IUser} from '../../models/IUser';
+import {AccountService} from '../../services/account.service';
+import {Observable} from 'rxjs';
 
 declare var $: any;
 @Component({
@@ -16,6 +20,7 @@ export class BlogEditComponent implements OnInit {
 
   myArray: Array<boolean> = [true,false];
   myDefault: Boolean = this.myArray[0];
+  account: Observable<any> = this.accountService.findAccountById(this.tokenStorageService.getAccountId());
 
   categories: ICategory[];
   blogEditForm: FormGroup = new FormGroup({
@@ -23,7 +28,6 @@ export class BlogEditComponent implements OnInit {
     title: new FormControl(''),
     content: new FormControl(''),
     category: new FormControl(''),
-    account: new FormControl(''),
     // postTime: new FormControl('')
 
 
@@ -32,7 +36,9 @@ export class BlogEditComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private categoryService: CategoryService,
-              private blogService: BlogService) {
+              private blogService: BlogService,
+              private tokenStorageService: TokenStorageService,
+              private accountService: AccountService) {
   }
   id = +this.route.snapshot.paramMap.get('id');
 
@@ -40,13 +46,15 @@ export class BlogEditComponent implements OnInit {
     this.categoryService.getAll().subscribe((resp: ICategory[]) =>{
       this.categories =resp
     })
-    this.findById();
+    if (this.tokenStorageService.getAccountId() == this.id){this.findById()}else {this.router.navigate(['/blogs/error'])};
+
     $(function() {
       $('#summernote').summernote();
     });
   }
 
   findById(){
+
     this.blogService.getBlogById(this.id).subscribe((resp: IBlog) =>{
       this.blogEditForm.patchValue(resp);
     })
@@ -60,15 +68,13 @@ export class BlogEditComponent implements OnInit {
         title: this.blogEditForm.value.title,
         content: markupStr,
         status: this.blogEditForm.value.status,
+        amountOfLikes:this.blogEditForm.value.amountOfLikes,
         category: {
           id: this.blogEditForm.value.category
-        },
-        account: {
-          id: 2
         }
       }
       this.blogService.updateBlog(this.id,blog).subscribe(data =>{
-        this.router.navigate(['/blogs'])
+        this.router.navigate(['/blogs/list'])
       });
     }
   }

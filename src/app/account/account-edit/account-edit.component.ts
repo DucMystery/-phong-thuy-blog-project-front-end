@@ -21,6 +21,7 @@ export class AccountEditComponent implements OnInit {
   id: number;
   account: IUser;
   updatedAccount = false;
+  currentAccount: IUser;
 
   constructor(
     private storage: AngularFireStorage,
@@ -34,14 +35,16 @@ export class AccountEditComponent implements OnInit {
 
   async ngOnInit() {
     this.account = await this.getAccount();
+    this.currentAccount = this.getAccount();
     this.editAccount = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: [''],
-      birthDay: [''],
-      phoneNumber: [''],
-      nickName: [''],
-      email: [''],
-      avatar: ['']
+      firstName: [this.currentAccount.firstName],
+      lastName: [this.currentAccount.lastName],
+      birthDay: [this.currentAccount.birthDay],
+      phoneNumber: [this.currentAccount.birthDay],
+      nickName: [this.currentAccount.username],
+      email: [this.currentAccount.email],
+      avatar: [this.currentAccount.avatar],
+      password:[this.currentAccount.avatar]
     });
     if (this.account.avatar != null) {
       this.imgSrc = this.account.avatar;
@@ -57,7 +60,7 @@ export class AccountEditComponent implements OnInit {
   submitEditAccount(id, account: any) {
     this.accountService.editAccount(id, account).subscribe();
     this.updatedAccount = true;
-    this.router.navigate(['/blogs'])
+    this.router.navigate(['/blogs/list'])
   }
 
   EditAvatar(event: any) {

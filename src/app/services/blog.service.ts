@@ -31,4 +31,20 @@ export class BlogService {
     return this.http.put<IBlog>(this.URL+id+'/edit',data);
 
   }
+
+  getAllBlogByAccount_Id(id: number) : Observable<any[]>{
+    return this.http.get<any[]>(this.URL+id+'/list');
+  }
+
+  getAllBlogById(id: number) : Observable<any[]>{
+    return this.http.get<any[]>(this.URL+id+'/listAll');
+  }
+
+  getAllBlogOfMe(): Observable<any[]>{
+    return this.http.get<any[]>(this.URL+'list-all-me');
+  }
+
+  getAllBlogByCategoryId(id: number):Observable<any[]>{
+    return this.http.get<any[]>(this.URL+id+'/list-category');
+  }
 }

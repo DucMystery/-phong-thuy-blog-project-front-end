@@ -9,9 +9,9 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AlbumCreateComponent} from "./album-create/album-create.component";
 import { AlbumDetailsComponent } from './album-details/album-details.component';
+import {AuthGuard} from '../_interceptor/auth.guard';
 const routes: Routes = [
-  {path:"upload", component:AlbumCreateComponent },
-  {path: "details/:id", component: AlbumDetailsComponent}
+  {path:"upload", component:AlbumCreateComponent,canActivate: [AuthGuard]}
   ];
 
 @NgModule({

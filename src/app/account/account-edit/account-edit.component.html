@@ -1,16 +1,16 @@
-<hr>
-<form [formGroup]="editAccount" (ngSubmit)="submit()">
-  <div class="container bootstrap snippet">
-    <div class="row">
-      <div class="col-sm-10"><h1>User name</h1></div>
-      <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image"
-                                                                     class="img-circle img-responsive"
-                                                                     src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-3"><!--left col-->
+
+<hr>
+<form [formGroup]="editAccount"  (ngSubmit)="submit()">
+<div class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-sm-10"><h1>User name</h1></div>
+    <div class="col-sm-2"><a routerLink="/blogs/list" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3"><!--left col-->
+
 
         <div class="text-center">
           <img [src]="imgSrc" alt="anh dai dien" (click)="fileUploader.click()" height="170" width="170"
@@ -45,7 +45,7 @@
       </div><!--/col-3-->
       <div class="col-sm-9">
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#home">Back Home</a></li>
+          <li class="active"><a data-toggle="tab" routerLink="/blogs/list">Back Home</a></li>
         </ul>
 
 
@@ -108,7 +108,7 @@
                 <!--                [disabled]="submitEditAccount().invalid"-->
                 <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save
                 </button>
-                <button class="btn btn-lg btn-danger" type="button" routerLink="/blogs"><i
+                <button class="btn btn-lg btn-danger" type="button" routerLink="/blogs/list"><i
                   class="glyphicon glyphicon-repeat"></i> Cancel
                 </button>
               </div>

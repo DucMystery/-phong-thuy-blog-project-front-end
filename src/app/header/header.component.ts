@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AccountService} from '../services/account.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor() { }
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
   }
