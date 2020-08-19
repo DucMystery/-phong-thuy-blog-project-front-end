@@ -9,7 +9,7 @@
           </div>
           <div class="row">
 
-            <span [innerHTML]="blog.content"></span>
+            <span [innerHTML]="blog.content" style="color: black"></span>
             <div class="row">
 
               <div class="col-12">
@@ -20,41 +20,75 @@
             <hr/>
             <!--
                                     <h3 class="mb-5 font-weight-bold">6 Comments</h3>-->
-            <div class="row">
-              <ul class="comment-list">
-                <li class="comment" *ngFor="let comment of comments" [id]="'comment'+blogId">
+<!--            <div class="row">-->
+<!--              <ul class="comment-list">-->
+<!--                <li class="comment" *ngFor="let comment of comments" [id]="'comment'+blogId">-->
+<!--                  <div class="vcard bio">-->
+<!--                    <img alt="Image placeholder" [src]="comment.account.avatar">-->
+<!--                  </div>-->
+<!--                  <div class="comment-body">-->
+<!--                    <h3>{{comment.account.nickName}}</h3>-->
+<!--                    <div class="meta">{{comment.time}}</div>-->
+<!--                    <p>{{comment.content}}</p>-->
+<!--                    <p><a href="#" class="reply">Reply</a></p>-->
+<!--                  </div>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--            </div>-->
+            <!-- END comment-list -->
+
+
+<!--            <div class="row">-->
+<!--              <div class="comment-form-wrap pt-5">-->
+<!--                <h3 class="mb-5">Leave a comment</h3>-->
+<!--                <form action="#" class="p-3 p-md-5 bg-light" [formGroup]="commentForm" (ngSubmit)="postComment()">-->
+<!--                  <div class="form-group">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="message">Message</label>-->
+<!--                      <textarea name="" id="message" cols="30" rows="10" class="form-control"-->
+<!--                                formControlName="content"></textarea>-->
+<!--                    </div>-->
+<!--                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">-->
+<!--                  </div>-->
+
+<!--                </form>-->
+<!--              </div>-->
+<!--            </div>-->
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5 font-weight-bold" style="color: white">{{comments.length}} Comments</h3>
+              <ul class="comment-list" *ngFor="let comment of comments" [id]="'comment'+blogId">
+                <li class="comment">
                   <div class="vcard bio">
-                    <img alt="Image placeholder" [src]="comment.account.avatar">
+                    <img [src]="comment.account.avatar" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>{{comment.account.nickName}}</h3>
+                    <h3 style="color: white">{{comment.account.name}}</h3>
                     <div class="meta">{{comment.time}}</div>
                     <p>{{comment.content}}</p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
                 </li>
               </ul>
-            </div>
-            <!-- END comment-list -->
+              <!-- END comment-list -->
 
-
-            <div>
               <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="p-3 p-md-5 bg-light" [formGroup]="commentForm" (ngSubmit)="postComment()">
+                <h3 class="mb-5" style="color: white">Leave a comment</h3>
+                <form [formGroup]="commentForm" (ngSubmit)="postComment()" class="p-3 p-md-5 bg-light">
+
                   <div class="form-group">
-                    <div class="form-group">
-                      <label for="message">Message</label>
-                      <textarea name="" id="message" cols="30" rows="10" class="form-control"
-                                formControlName="content"></textarea>
-                    </div>
+                    <label for="message">Message</label>
+                    <textarea name="" id="message" cols="30" rows="10" class="form-control" formControlName="content"></textarea>
+                  </div>
+                  <div class="form-group">
                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
                   </div>
 
                 </form>
               </div>
             </div>
-          </div>
+
+
+        </div>
         </div>
       </div>
     </div>

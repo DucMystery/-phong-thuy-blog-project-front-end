@@ -5,6 +5,10 @@ import {BlogService} from '../../services/blog.service';
 import {TokenStorageService} from '../../services/tokenStorage.service';
 import {AccountService} from '../../services/account.service';
 import {CategoryService} from '../../services/category.service';
+import {CommentService} from '../../services/comment.service';
+import {Icomment} from '../../models/icomment';
+import {Observable} from 'rxjs';
+import {IBlogResponse} from '../../models/iblog-response';
 
 declare var $: any;
 
@@ -15,17 +19,22 @@ declare var $: any;
 })
 export class BlogListComponent implements OnInit {
 
-  blogs: any[];
+  blogs: IBlogResponse[];
   isLoggedIn: boolean;
   avatarUrl: string;
   accounts: IUser[];
   categories: any[];
+  countCategory: number[];
+  indexOfBlogs: number = 0;
+  blogListOfCategory: any[];
+  isAccountTrue: boolean = false;
 
   page: number = 1;
 
   constructor(private blogService: BlogService,
               private storage: TokenStorageService,
-              private categoryService: CategoryService
+              private categoryService: CategoryService,
+              private commentService: CommentService
   ) {
   }
 
@@ -65,11 +74,14 @@ export class BlogListComponent implements OnInit {
     this.avatarUrl = this.storage.getUserAvartar();
   }
 
+
   getAllBlogs() {
-    this.blogService.getAllBlogByTime().subscribe((resp: any[]) => {
+    this.blogService.getAllBlogByTime().subscribe((resp: IBlogResponse[]) => {
       this.blogs = resp;
+      console.log(resp);
       this.blogs.map(blog => {
           blog.postTime = new Date(blog.postTime);
+
         }
       );
       $(function() {
@@ -83,6 +95,10 @@ export class BlogListComponent implements OnInit {
         loader();
       });
     });
+  }
+
+  getAllBlogByCategory(){
+
   }
 
   getAllCategories() {

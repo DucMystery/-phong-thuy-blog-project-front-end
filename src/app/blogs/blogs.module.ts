@@ -16,6 +16,7 @@ import { BlogUserComponent } from './blog-user/blog-user.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogErrorComponent } from './blog-error/blog-error.component';
 import {AuthGuard} from '../_interceptor/auth.guard';
+import { BlogsCategoryComponent } from './blogs-category/blogs-category.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
       {path: 'create',component: BlogAddComponent},
       {path: ':id/edit',component:BlogEditComponent,canActivate:[AuthGuard]},
       {path: ':id/list',component: BlogUserComponent,canActivate:[AuthGuard]},
-      {path: 'error',component: BlogErrorComponent}
+      {path: 'error',component: BlogErrorComponent},
+      {path:':id/listOfCategory',component:BlogsCategoryComponent,canActivate:[AuthGuard]}
     ]
   },
 ];
@@ -42,7 +44,8 @@ const routes: Routes = [
     BlogDeleteComponent,
     BlogListComponent,
     BlogUserComponent,
-    BlogErrorComponent
+    BlogErrorComponent,
+    BlogsCategoryComponent
   ],
   exports: [
     BlogsComponent

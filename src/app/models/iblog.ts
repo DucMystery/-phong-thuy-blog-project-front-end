@@ -10,6 +10,7 @@ export interface IBlog {
   postTime?: Date;
   image?: string;
   account?: any;
+  comments?: any[];
 
 
 
