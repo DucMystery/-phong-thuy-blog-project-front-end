@@ -29,7 +29,6 @@ export class BlogListComponent implements OnInit {
   indexOfBlogs: number = 0;
   blogListOfCategory: any[];
   isAccountTrue: boolean = false;
-
   page: number = 1;
   private id: number;
 
@@ -42,11 +41,10 @@ export class BlogListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.findAccount();
     this.getAllBlogs();
     this.getAllCategories();
-    this.findAccount();
-    console.log(this.blogs);
+    this.id= +this.storage.getAccountId();
     this.isLoggedIn = this.storage.getStatusLoggedOrLogout();
     this.avatarUrl = this.storage.getUserAvartar();
   }
@@ -106,7 +104,7 @@ export class BlogListComponent implements OnInit {
     this.id = +this.storage.getAccountId();
     this.accountService.findAccountById(this.id).subscribe( data => {
       this.account = data;
-      console.log(data);
+      console.log(this.id+'----------------');
     })
   }
 

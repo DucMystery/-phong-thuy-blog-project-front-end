@@ -17,11 +17,8 @@ import {BlogUserComponent} from '../blogs/blog-user/blog-user.component';
 import {BlogErrorComponent} from '../blogs/blog-error/blog-error.component';
 import {BlogsCategoryComponent} from '../blogs/blogs-category/blogs-category.component';
 
-
 const routes: Routes = [
-  {
-    path: '',component:AccountEditComponent
-  },
+  {path: 'edit',component:AccountEditComponent}
 ];
 
 @NgModule({
@@ -31,10 +28,10 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
     FormsModule, AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireDatabaseModule, ReactiveFormsModule, RouterModule
+    AngularFireDatabaseModule, ReactiveFormsModule, RouterModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class AccountModule { }
