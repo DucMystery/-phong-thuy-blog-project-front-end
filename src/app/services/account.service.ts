@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IUser} from "../models/IUser";
 import {IBlog} from '../models/iblog';
-const ACCOUNT_API = 'http://localhost:8000/api/accounts/';
+const ACCOUNT_API = 'http://localhost:8080/api/accounts/';
 @Injectable({providedIn: 'root'})
 export class AccountService {
   avatarUrl: string;
