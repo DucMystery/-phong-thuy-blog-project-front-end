@@ -5,6 +5,8 @@ import {TokenStorageService} from '../../services/tokenStorage.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import {IBlogResponse} from '../../models/iblog-response';
+import {AccountService} from '../../services/account.service';
+import {IUser} from '../../models/IUser';
 declare var $: any;
 @Component({
   selector: 'app-blogs-category',
@@ -19,10 +21,12 @@ export class BlogsCategoryComponent implements OnInit {
   isLoggedIn: boolean;
   categories: any[];
   page: number = 1;
+  account: IUser;
   constructor(private blogService: BlogService,
               private storageToken: TokenStorageService,
               private route: ActivatedRoute,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private accountService: AccountService) {
     this.route.paramMap.subscribe((pramMap: ParamMap)=>{
       this.id = +pramMap.get('id');
       this.getAllBlogByCategoryId(this.id);
@@ -31,6 +35,7 @@ export class BlogsCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCateories();
+    this.findAccount();
     this.isLoggedIn= this.storageToken.getStatusLoggedOrLogout();
     this.avatarUrl = this.storageToken.getUserAvartar();
   }
@@ -38,6 +43,13 @@ export class BlogsCategoryComponent implements OnInit {
   getAllCateories(){
     this.categoryService.getAll().subscribe((response:any[]) =>{
       this.categories = response;
+    })
+  }
+  findAccount(){
+    this.id = +this.storageToken.getAccountId();
+    this.accountService.findAccountById(this.id).subscribe( data => {
+      this.account = data;
+      console.log(data);
     })
   }
 

@@ -13,4 +13,9 @@ export class AlbumService {
   save(albumTitle: IAlbum): Observable<any> {
     return this.http.post(IMAGES_API, albumTitle);
   }
+
+  //đầu vào là id của account
+  getAlbums(id: number): Observable<IAlbum[]> {
+    return this.http.get<IAlbum[]>(IMAGES_API+'account/'+id);
+  }
 }

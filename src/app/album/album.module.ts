@@ -10,17 +10,21 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AlbumCreateComponent} from './album-create/album-create.component';
 import {AuthGuard} from '../_interceptor/auth.guard';
 import {AlbumListComponent} from './album-list/album-list.component';
+import { ImagesComponent } from './images/images.component';
 
 const routes: Routes = [
   {path: 'upload', component: AlbumCreateComponent, canActivate: [AuthGuard]},
-  {path: ':id/album', component: AlbumListComponent, canActivate: [AuthGuard]}
+  {path: ':id/album', component: AlbumListComponent, canActivate: [AuthGuard]},
+  {path: ':id/listImage', component: ImagesComponent}
+
 ];
 
 @NgModule({
-  declarations: [AlbumCreateComponent, AlbumComponent, AlbumListComponent],
+  declarations: [AlbumCreateComponent, AlbumComponent, AlbumListComponent, ImagesComponent],
   exports: [
     AlbumCreateComponent,
-    AlbumListComponent
+    AlbumListComponent,
+    ImagesComponent
   ],
   imports: [
     CommonModule,

@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label>Nick Name</label>
+            <label>Birthday</label>
             <input type="date" formControlName="birthDay" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.birthDay.errors }" />
             <div *ngIf="submitted && f.birthDay.errors" class="invalid-feedback">
               <div *ngIf="f.birthDay.errors.required">BirthDay is required</div>

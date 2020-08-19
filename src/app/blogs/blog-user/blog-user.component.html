@@ -1,3 +1,4 @@
+
 <div id="colorlib-main">
   <section class="ftco-section ftco-no-pt ftco-no-pb">
     <div class="container">
@@ -5,23 +6,23 @@
         <div class="col-xl-8 py-5 px-md-5">
           <div class="row pt-md-4">
             <!--            đây là phần body của blogs.hiển thị các blog-->
-            <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:6,currentPage: page}">
+            <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:4,currentPage: page};let i = index">
               <div class="blog-entry ftco-animate d-md-flex">
                 <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" src="{{blog.avatarUrl}}"/>
                 <div class="text text-2 pl-md-4">
-                  <h3 class="mb-2"><a [routerLink]="['/blogs',blog.id,'blogDetail']">{{blog.title}}</a></h3>
+                  <h3 class="mb-2"><a [routerLink]="['/blogs',blog,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
-                      <span><i class="icon-calendar mr-2"></i>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
-                      <span><a [routerLink]="[blog.id,'blogDetail']"><i class="icon-folder-o mr-2">{{blog.nameCategory}}</i></a></span>
-                      <span><i class="icon-comment2 mr-2"></i>{{blog.amountComment}} Comment</span>
-                      <span><i class="icon-comment2 mr-2"></i>{{blog.likes}} Comment</span>
+                      <span>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
+                      <span><a [routerLink]="[blog.id,'blogDetail']">{{blog.nameCategory}}</a></span>
+                      <span><i class="	glyphicon glyphicon-list-alt"></i>{{blog.amountComment}}  Comment</span>
+                      <span>{{blog.likes}}  Like</span>
                     </p>
                   </div>
-                  <p class="mb-4"></p>
+                  <p class="mb-4 row"></p>
                   <p>
-                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-                    <a [routerLink]="['/blogs',blog.accountId,'edit']" class="btn-custom">Edit <span class="ion-ios-arrow-forward"></span></a>
+                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More      <span class="glyphicon glyphicon-hand-right"></span></a>
+                    <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn-custom" style="padding-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
                   </p>
                 </div>
               </div>
@@ -31,20 +32,20 @@
 
           <!--      negative    đây sẽ là phần phân trang của blog-->
           <div class="row">
-            <pagination-controls  id="blog-list" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
-<!--            <div class="col">-->
-<!--              <div class="block-27">-->
-<!--                <ul>-->
-<!--                  <li><a href="#">&lt;</a></li>-->
-<!--                  <li class="active"><span>1</span></li>-->
-<!--                  <li><a href="#">2</a></li>-->
-<!--                  <li><a href="#">3</a></li>-->
-<!--                  <li><a href="#">4</a></li>-->
-<!--                  <li><a href="#">5</a></li>-->
-<!--                  <li><a href="#">&gt;</a></li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="col">-->
+            <!--              <div class="block-27">-->
+            <!--                <ul>-->
+            <!--                  <li><a href="#">&lt;</a></li>-->
+            <pagination-controls  id="blog-list" directionLinks="true" (pageChange)="changePage($event)" style="color: white"></pagination-controls>
+            <!--                  <li class="active"><span>1</span></li>-->
+            <!--                  <li><a href="#">2</a></li>-->
+            <!--                  <li><a href="#">3</a></li>-->
+            <!--                  <li><a href="#">4</a></li>-->
+            <!--                  <li><a href="#">5</a></li>-->
+            <!--                  <li><a href="#">&gt;</a></li>-->
+            <!--                </ul>-->
+            <!--              </div>-->
+            <!--            </div>-->
           </div>
 
           <!--          kết thúc phân trang-->
@@ -70,10 +71,9 @@
                   </div>
 
                   <div class="dropdown col-xs-6">
-                    <i class="dropbtn">Hello!</i>
+                    <i class="dropbtn">Hello!{{account.firstName}} {{account.lastName}}</i>
                     <div class="dropdown-content">
-                      <a routerLink="/edit">Profile</a>
-                      <!--                      <a href="#">Nhạc cá nhân</a>-->
+                      <a routerLink="/accounts/edit">Profile</a>
                       <a class="btn btn-danger" routerLink="/auth/logout">Log Out</a>
                     </div>
                   </div>
@@ -88,11 +88,10 @@
 
           <div class="sidebar-box ftco-animate">
             <h3 class="sidebar-heading">Categories</h3>
-            <ul class="categories" *ngFor="let category of categories">
-              <li><a href="#">{{category.name}} <span>(6)</span></a></li>
+            <ul class="categories" *ngFor="let category of categories;let i = index">
+              <li><a [routerLink]="['/blogs',category.id,'listOfCategory']">{{category.name}}</a></li>
             </ul>
           </div>
-
 
           <div class="sidebar-box subs-wrap img py-4"
                style="background-image: url('../../assets/static/images/bg_1.jpg');">
@@ -136,3 +135,4 @@
     </div>
   </section>
 </div>
+

@@ -6,7 +6,7 @@ export interface IAlbum {
   name? : string;
   status?: string;
   category?: any,
-  postDate?: Date;
+  postTime?: Date;
   images?: IImage[];
   account?: any;
 }
