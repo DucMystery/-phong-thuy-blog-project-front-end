@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
+import {IUser} from "../../models/IUser";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,8 +14,10 @@ import {AuthService} from "../../services/auth.service";
 export class RegitrationComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
+
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private route: Router ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -21,6 +25,7 @@ export class RegitrationComponent implements OnInit {
       lastName: ['', Validators.required],
       nickName: ['', Validators.required],
       birthDay: ['', Validators.required],
+      phoneNumber:['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -58,14 +63,12 @@ export class RegitrationComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    const  dataJson = this.registerForm.removeControl('confirmPassword')
-console.log(dataJson);
+     const dataJson = this.registerForm.value;
     this.authService.register(dataJson).subscribe(result=>{
       console.log(result);
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(result))
+      alert('REGISTER SUCCCESSS ! \n\n' + "Respon form htttp " +JSON.stringify(result))
+      this.route.navigate(['auth/login'])
     })
-
-
   }
 
 }
