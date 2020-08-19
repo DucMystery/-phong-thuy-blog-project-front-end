@@ -51,6 +51,7 @@ export class AlbumCreateComponent implements OnInit {
     this.categoryService.getAll().subscribe(result => {
       this.categories = result;
     });
+
   }
 
   save() {
@@ -79,7 +80,10 @@ export class AlbumCreateComponent implements OnInit {
         this.message = 'Add album fail!Try again';
         this.formGroup.reset();
       });
+      //thuy them code
+      this.arrayImage =[];
     }
+
   }
 
   uploadFile(event) {
@@ -120,6 +124,7 @@ export class AlbumCreateComponent implements OnInit {
           snapshot.ref.getDownloadURL().then(downloadURL => {
             const images = {srcImg: downloadURL};
             resolve(images);
+
           });
         })
         .catch(error => reject(error));

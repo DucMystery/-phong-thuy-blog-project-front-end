@@ -8,12 +8,14 @@ import {environment} from "../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AlbumCreateComponent} from "./album-create/album-create.component";
+import { AlbumDetailsComponent } from './album-details/album-details.component';
 const routes: Routes = [
-  {path:"upload", component:AlbumCreateComponent }
+  {path:"upload", component:AlbumCreateComponent },
+  {path: "details/:id", component: AlbumDetailsComponent}
   ];
 
 @NgModule({
-      declarations: [ AlbumCreateComponent,AlbumComponent],
+      declarations: [ AlbumCreateComponent,AlbumComponent, AlbumDetailsComponent],
   exports: [
     AlbumCreateComponent
   ],
