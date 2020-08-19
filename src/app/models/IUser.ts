@@ -1,4 +1,5 @@
 export interface IUser {
+  id?: number,
   firstName?: string;
   lastName?: string;
   username?: string;
@@ -8,5 +9,6 @@ export interface IUser {
   birthDay?: Date;
   status?: boolean;
   avatar?: string;
+  nickName?:string;
   accessToken?: any;
 }

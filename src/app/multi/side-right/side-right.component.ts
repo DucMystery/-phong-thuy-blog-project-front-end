@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../../services/tokenStorage.service";
+import {IUser} from "../../models/IUser";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-side-right',
@@ -7,13 +9,26 @@ import {TokenStorageService} from "../../services/tokenStorage.service";
   styleUrls: ['./side-right.component.css']
 })
 export class SideRightComponent implements OnInit {
+  id: number;
   isLoggedIn: boolean;
   avatarUrl: string;
-  constructor(private  storage: TokenStorageService) { }
+  account: IUser;
+
+  constructor(private  storage: TokenStorageService,
+              private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.isLoggedIn= this.storage.getStatusLoggedOrLogout();
     this.avatarUrl = this.storage.getUserAvartar();
+    this.findAccount();
+  }
+
+  findAccount(){
+    this.id = +this.storage.getAccountId();
+    this.accountService.findAccountById(this.id).subscribe( data => {
+      this.account = data;
+      console.log(data);
+    })
   }
 
 }

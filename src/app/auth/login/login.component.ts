@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {TokenStorageService} from "../../services/tokenStorage.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,29 +12,26 @@ import {IUser} from "../../models/IUser";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: any ={};
+  form: any = {};
   avatarUrl: string;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMess = '';
   roles: string[] = [];
   account: IUser;
-myGroup:FormGroup;
-
+  myGroup: FormGroup;
 
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
               private router: Router,
               private accountService: AccountService
-
-              ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    // if (this.tokenStorage.getToken()) {
-    //   this.isLoggedIn = true;
-    //   // this.roles = this.tokenStorage.getUser();
-    // }
+
   }
+
   onSubmit() {
 
     this.authService.login(this.form).subscribe(
@@ -48,18 +45,16 @@ myGroup:FormGroup;
         this.isLoggedIn = true;
         this.router.navigate(['/blogs/list']);
         this.tokenStorage.saveStatusWhenUserLogged('logged');
-        this.accountService.findAccountById(data.id).subscribe( dataAccount => {
+        this.accountService.findAccountById(data.id).subscribe(dataAccount => {
           this.tokenStorage.saveUserAvatar(dataAccount.avatar);
+          this.roles = dataAccount.roles;
         })
       },
       err => {
-        this.errorMess =  err.error.message;
+        this.errorMess = err.error.message;
         this.isLoginFailed = true;
       }
     );
   }
 
-  reloadPage() {
-    window.location.reload();
-  }
 }

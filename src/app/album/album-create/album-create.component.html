@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <div id="content">
+    <div class="container-fruid register">
+      <div class="row">
+
+        <div class="col-md-3 register-left">
+          <h3>Welcome</h3>
+
+        </div>
+
+        <div class="col-md-9 register-right">
+
+          <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+              <div *ngIf="isShow"
+                   class="alert {{ (isSuccess) ? 'alert-success' : 'alert-danger' }}"
+                   role="alert">
+                {{message}}
+              </div>
+              <h3 class="register-heading">Create Photo Album</h3>
+
+              <form [formGroup]="formGroup" (ngSubmit)="save()">
+                <div class="row register-form">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input formControlName="name" placeholder="Tên nhà *" type="text" class="form-control"
+                             id="tenNha" aria-describedby="emailHelp">
+                    </div>
+
+                  </div>
+
+
+                  <div class="form-group">
+                    <select formControlName="status">
+                      <option value="true"> Puplic</option>
+                      <option value="false">Private</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" class="form-control" readonly>
+                      <div class="input-group-btn">
+                                  <span style="margin: 0px" class="fileUpload btn btn-primary">
+                                      <span (click)="onClick()" class="upl" id="upload">Upload multiple file</span>
+                                      <input type="file" (change)="uploadFile($event)" class="upload up" id="up"
+                                             onchange="readURL(this);" multiple/>
+                                    </span>
+                      </div>
+                      <div *ngIf="isLoading" class=" spinner-border" role="status">
+                        <span class="  sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div formGroupName="category" class="form-group col-6 float-left" style="padding: 0px!important;">
+                  <label>Category</label>
+                  <select formControlName="id">
+                    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btnRegister">
+                  Submit
+                </button>
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
