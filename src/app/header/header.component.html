@@ -8,7 +8,7 @@
         <li><a routerLink="">Fashion</a></li>
 <!--        cần fix id ở đây , và hiển thị list blog theo chủ đề-->
         <li><a routerLink="/images/upload" *ngIf="isLoggedIn">Creat Album Image</a></li>
-        <li><a routerLink="/blogs/create">Create</a></li>
+        <li><a routerLink="/blogs/create" *ngIf="isLoggedIn">Create</a></li>
       </ul>
     </nav>
 
