@@ -7,15 +7,16 @@ import {AlbumComponent} from "./album/album.component";
 
 const routes: Routes = [
   {
-    path: '',component:LayoutTemplatesFullComponent,
-    children:[
-      {path:'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)}
+    path: '', component: LayoutTemplatesFullComponent,
+    children: [
+      {path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)}
     ]
   },
   //Module Album anh
   {
-    path:'images',component: AlbumComponent,
-    loadChildren: () => import('./album/album.module').then(m =>m.AlbumModule)
+    path: 'images', component: AlbumComponent,
+
+    loadChildren: () => import('./album/album.module').then(m => m.AlbumModule)
   },
   //Module auth(dang ky, dang nhap, dang xuat)
   {path: 'auth',

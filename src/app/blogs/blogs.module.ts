@@ -27,7 +27,7 @@ const routes: Routes = [
       {path: ':id/edit',component:BlogEditComponent,canActivate:[AuthGuard]},
       {path: ':id/list',component: BlogUserComponent,canActivate:[AuthGuard]},
       {path: 'error',component: BlogErrorComponent},
-      {path:':id/listOfCategory',component:BlogsCategoryComponent,canActivate:[AuthGuard]}
+      {path:':id/listOfCategory',component:BlogsCategoryComponent}
     ]
   },
 ];

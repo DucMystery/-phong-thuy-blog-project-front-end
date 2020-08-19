@@ -1,0 +1,44 @@
+<div id="colorlib-page">
+
+  <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+    <h1 id="colorlib-logo"><a href="index.html"><span class="img"
+                                                      style="background-image: url(../../../assets/img/new_image.jpg);"></span>Louie
+      Smith</a></h1>
+    <nav id="colorlib-main-menu" role="navigation">
+      <ul>
+        <li class="colorlib-active"><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+    <div class="colorlib-footer">
+      <div class="d-flex justify-content-center">
+        <form action="#" class="colorlib-subscribe-form" [formGroup]="shareForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-group d-flex">
+            <input placeholder="Enter Email Address to share list image" class="form-control" type="email" formControlName="email">
+          </div>
+          <div class="form-group d-flex">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success">
+             Share List Image
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </aside>
+  <!-- END COLORLIB-ASIDE -->
+  <div id="colorlib-main">
+    <section class="ftco-section-3">
+      <div>
+        <div class="row">
+          <div class="card-group col-sm-4" *ngFor="let image of images">
+            <div class="card">
+              <a href="{{image.srcImg}}">
+                <img src="{{image.srcImg}}" class="image">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
