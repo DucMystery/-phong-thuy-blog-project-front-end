@@ -28,7 +28,7 @@ export class BlogListComponent implements OnInit {
   countCategory: number[];
   indexOfBlogs: number = 0;
   blogListOfCategory: any[];
-  isAccountTrue: boolean = false;
+  isAccountTrue: boolean[];
 
   page: number = 1;
   private id: number;
@@ -42,7 +42,7 @@ export class BlogListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    $(function(){
+    $(function() {
       var i = 0;
       $('.ftco-animate').waypoint(function(direction) {
         if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
@@ -69,7 +69,7 @@ export class BlogListComponent implements OnInit {
           }, 100);
         }
       }, {offset: '95%'});
-    })
+    });
     this.getAllBlogs();
     this.getAllCategories();
     this.findAccount();
@@ -84,8 +84,15 @@ export class BlogListComponent implements OnInit {
       this.blogs = resp;
       console.log(resp);
       this.blogs.map(blog => {
+          debugger
           blog.postTime = new Date(blog.postTime);
-
+          if (blog.accountId == this.storage.getAccountId()) {
+            blog['active'] = true;
+            return blog;
+          } else {
+            blog['active'] = false;
+            return blog;
+          }
         }
       );
       $(function() {
@@ -101,12 +108,12 @@ export class BlogListComponent implements OnInit {
     });
   }
 
-  findAccount(){
+  findAccount() {
     this.id = +this.storage.getAccountId();
-    this.accountService.findAccountById(this.id).subscribe( data => {
+    this.accountService.findAccountById(this.id).subscribe(data => {
       this.account = data;
       console.log(data);
-    })
+    });
   }
 
   getAllCategories() {
@@ -115,10 +122,10 @@ export class BlogListComponent implements OnInit {
     });
   }
 
-  changePage(event){
+  changePage(event) {
     this.page = event;
 
-    $(function(){
+    $(function() {
       var i = 0;
       $('.ftco-animate').waypoint(function(direction) {
         if (direction === 'down' && !$(this.element).hasClass('ftco-animated')) {
@@ -145,6 +152,6 @@ export class BlogListComponent implements OnInit {
           }, 100);
         }
       }, {offset: '95%'});
-    })
+    });
   }
 }

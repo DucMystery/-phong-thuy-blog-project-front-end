@@ -10,7 +10,7 @@
               <div class="blog-entry ftco-animate d-md-flex">
                 <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" src="{{blog.avatarUrl}}"/>
                 <div class="text text-2 pl-md-4">
-                  <h3 class="mb-2"><a [routerLink]="['/blogs',blog,'blogDetail']">{{blog.title}}</a></h3>
+                  <h3 class="mb-2"><a [routerLink]="['/blogs',blog.id,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
                       <span>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>

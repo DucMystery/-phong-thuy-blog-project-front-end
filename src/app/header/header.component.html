@@ -4,8 +4,8 @@
   <aside id="colorlib-aside" role="complementary" class="js-fullheight">
     <nav id="colorlib-main-menu" role="navigation">
       <ul>
+        <li><img [routerLink]="['/blogs',account.id,'list']" class="img img-2" src="{{avatarUrl}}" style="width: 100px;border-radius: 50%" *ngIf="isLoggedIn"/></li>
         <li class="colorlib-active"><a routerLink="/blogs/list">Home</a></li>
-        <li><a routerLink="">Fashion</a></li>
 <!--        cần fix id ở đây , và hiển thị list blog theo chủ đề-->
         <li><a routerLink="/images/upload" *ngIf="isLoggedIn">Creat Album Image</a></li>
         <li><a routerLink="/blogs/create" *ngIf="isLoggedIn">Create</a></li>

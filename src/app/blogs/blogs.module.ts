@@ -9,7 +9,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { BlogAddComponent } from './blog-add/blog-add.component';
 import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
-import {SideRightComponent} from "../multi/side-right/side-right.component";
 import { BlogDeleteComponent } from './blog-delete/blog-delete.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { BlogUserComponent } from './blog-user/blog-user.component';
@@ -37,7 +36,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     BlogsComponent,
-    SideRightComponent,
     BlogDetailComponent,
     BlogAddComponent,
     BlogEditComponent,
@@ -49,7 +47,6 @@ const routes: Routes = [
   ],
   exports: [
     BlogsComponent,
-    SideRightComponent
   ],
   imports: [
     CommonModule,

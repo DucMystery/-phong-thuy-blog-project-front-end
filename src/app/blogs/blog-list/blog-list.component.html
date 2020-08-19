@@ -10,7 +10,7 @@
               <div class="blog-entry ftco-animate d-md-flex">
                 <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" src="{{blog.avatarUrl}}"/>
                 <div class="text text-2 pl-md-4">
-                  <h3 class="mb-2"><a [routerLink]="['/blogs',blog,'blogDetail']">{{blog.title}}</a></h3>
+                  <h3 class="mb-2"><a [routerLink]="['/blogs',blog.id,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
                       <span>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
@@ -22,7 +22,7 @@
                   <p class="mb-4 row"></p>
                   <p>
                     <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn-custom">Read More      <span class="glyphicon glyphicon-hand-right"></span></a>
-                           <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn-custom" style="padding-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
+                           <a *ngIf="blog.active" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn-custom" style="padding-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
                   </p>
                 </div>
               </div>
