@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../models/IUser';
 
-const AUTH_API = 'http://localhost:8000/';
+const AUTH_API = 'http://localhost:8080/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };

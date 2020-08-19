@@ -15,11 +15,11 @@ import {RouterModule} from "@angular/router";
   exports: [
     AccountEditComponent
   ],
-    imports: [
-        CommonModule,
-        FormsModule, AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule,
-        AngularFireDatabaseModule, ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    FormsModule, AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule, ReactiveFormsModule, RouterModule
+  ]
 })
 export class AccountModule { }

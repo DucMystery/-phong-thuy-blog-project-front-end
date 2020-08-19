@@ -23,6 +23,7 @@ export class BlogListComponent implements OnInit {
   isLoggedIn: boolean;
   avatarUrl: string;
   accounts: IUser[];
+  account: IUser;
   categories: any[];
   countCategory: number[];
   indexOfBlogs: number = 0;
@@ -30,11 +31,13 @@ export class BlogListComponent implements OnInit {
   isAccountTrue: boolean = false;
 
   page: number = 1;
+  private id: number;
 
   constructor(private blogService: BlogService,
               private storage: TokenStorageService,
               private categoryService: CategoryService,
-              private commentService: CommentService
+              private commentService: CommentService,
+              private accountService: AccountService
   ) {
   }
 
@@ -69,6 +72,7 @@ export class BlogListComponent implements OnInit {
     })
     this.getAllBlogs();
     this.getAllCategories();
+    this.findAccount();
     console.log(this.blogs);
     this.isLoggedIn = this.storage.getStatusLoggedOrLogout();
     this.avatarUrl = this.storage.getUserAvartar();
@@ -97,8 +101,12 @@ export class BlogListComponent implements OnInit {
     });
   }
 
-  getAllBlogByCategory(){
-
+  findAccount(){
+    this.id = +this.storage.getAccountId();
+    this.accountService.findAccountById(this.id).subscribe( data => {
+      this.account = data;
+      console.log(data);
+    })
   }
 
   getAllCategories() {

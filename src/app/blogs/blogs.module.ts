@@ -16,7 +16,7 @@ import { BlogUserComponent } from './blog-user/blog-user.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogErrorComponent } from './blog-error/blog-error.component';
 import {AuthGuard} from '../_interceptor/auth.guard';
-import { BlogsCategoryComponent } from './blogs-category/blogs-category.component';
+import {BlogsCategoryComponent} from './blogs-category/blogs-category.component';
 
 const routes: Routes = [
   {
