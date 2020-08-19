@@ -9,13 +9,13 @@
 <!--        cần fix id ở đây , và hiển thị list blog theo chủ đề-->
         <li><a routerLink="/images/upload" *ngIf="isLoggedIn">Creat Album Image</a></li>
         <li><a routerLink="/blogs/create" *ngIf="isLoggedIn">Create</a></li>
-        <li><a [routerLink]="['/images',id,'album']" *ngIf="isLoggedIn"> List Album</a></li>
+        <li><a [routerLink]="['/images',account.id,'album']" *ngIf="isLoggedIn"> List Album</a></li>
       </ul>
     </nav>
 
     <div class="colorlib-footer">
       <h1 id="colorlib-logo" class="mb-4"><a href="#"
-                                             style="background-image: url('../../assets/static/images/author.jpg');">Phong
+                                             style="background-image: url('../../assets/static/images/author.jpg'); font-size: 70px">Phong
         <span>Thủy</span></a></h1>
       <div class="mb-4">
         <h3>Subscribe for newsletter</h3>

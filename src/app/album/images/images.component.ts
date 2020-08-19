@@ -5,6 +5,7 @@ import {IImage} from '../../models/albumimage/IImage';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Email} from '../../models/Email';
+import {TokenStorageService} from '../../services/tokenStorage.service';
 
 @Component({
   selector: 'app-images',
@@ -14,13 +15,15 @@ import {Email} from '../../models/Email';
 export class ImagesComponent implements OnInit {
   public href: string = "";
   shareForm: FormGroup;
+  isAccount: boolean = false;
 
 
 
   images:IImage[];
   constructor(private activatedRoute: ActivatedRoute,private imageService:ImageService,
               private fb: FormBuilder, public client: HttpClient,
-              private router : Router
+              private router : Router,
+              private tokenStorageService: TokenStorageService
               ) {
   }
 
@@ -32,12 +35,19 @@ export class ImagesComponent implements OnInit {
     });
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.getListImages();
+    this.checkAccount();
   }
   getListImages(){
     this.imageService.getImageDetailList(this.id).subscribe((resp:IImage[])=>{
       this.images=resp;
       console.log(this.images);
     })
+  }
+
+  checkAccount(){
+    if (this.tokenStorageService.getAccountId() != null){
+      this.isAccount = true;
+    }
   }
 
 

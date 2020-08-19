@@ -16,6 +16,7 @@ declare const myTest: any;
 export class AlbumCreateComponent implements OnInit {
   myItems: File[] = [];
   categories : any[];
+  accountId: number;
   formGroup = new FormGroup({
     name: new FormControl(),
     status: new FormControl(),
@@ -42,6 +43,7 @@ export class AlbumCreateComponent implements OnInit {
                 private storage: TokenStorageService,
                 private router:Router) {}
   ngOnInit(): void {
+     this.accountId=this.storage.getAccountId();
     this.categoryService.getAll().subscribe(result => {
       this.categories = result;
     });
@@ -73,7 +75,7 @@ export class AlbumCreateComponent implements OnInit {
       //thuy them code
       this.arrayImage =[];
     }
-    this.router.navigate([''])
+    this.router.navigate(['images/'+this.accountId+'/album']);
   }
   uploadFile(event) {
     const files = event.target.files;
