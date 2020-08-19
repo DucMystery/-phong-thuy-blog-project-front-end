@@ -28,6 +28,7 @@ const routes: Routes = [
   //Module account chua thiet ke xong
   {path: 'edit', component : AccountEditComponent},
   {path: 'side-right', component : SideRightComponent}
+  {path: 'auth',loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRoutingModule)},
   {path: 'edit', component : AccountEditComponent},
 ];
 

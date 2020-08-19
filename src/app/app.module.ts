@@ -13,8 +13,11 @@ import {BlogsModule} from './blogs/blogs.module';
 import {AccountModule} from "./account/account.module";
 import { LogoutComponent } from './auth/logout/logout.component';
 import {HeaderComponent} from './header/header.component';
+import { LayoutTemplatesFullComponent } from './layout-templates-full/layout-templates-full.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {AlbumModule} from "./album/album.module";
+
+
 
 
 @NgModule({
