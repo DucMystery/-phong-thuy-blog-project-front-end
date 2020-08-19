@@ -12,14 +12,19 @@
             <span [innerHTML]="blog.content" style="color: black"></span>
             <div class="row">
 
-              <div class="col-12">
+              <div>
+                <table width="670px">
+                  <tr style="text-align: center;border: 1px solid black">
+                    <td><button class="btn btn-primary" (click)="likeSubmit()"> Like <span [id] = "'like'+blog.id">{{blog.amountOfLikes}}</span> </button></td>
+                  <td><form [formGroup]="shareForm" (ngSubmit)="onSubmit()" novalidate class="">
+                    <input class="form-control" type="email" id="example-url-twt" formControlName="email" placeholder="Enter email to share">
+                    <button>Submit</button>
+                  </form></td>
+                  </tr>
+                </table>
 
-                <button class="btn btn-primary col-sm-5" (click)="likeSubmit()"> Like <span [id] = "'like'+blog.id">{{blog.amountOfLikes}}</span> </button>
+<!--                <button class="btn btn-primary col-sm-4" (click)="likeSubmit()"> Like <span [id] = "'like'+blog.id">{{blog.amountOfLikes}}</span> </button>-->
               </div>
-              <form [formGroup]="shareForm" (ngSubmit)="onSubmit()" novalidate class="col-sm-7">
-                <input class="form-control" type="email" id="example-url-twt" formControlName="email">
-                <button>Submit</button>
-              </form>
             </div>
             <hr/>
             <!--
