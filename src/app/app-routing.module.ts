@@ -6,6 +6,7 @@ import {LayoutTemplatesFullComponent} from './layout-templates-full/layout-templ
 import {AlbumComponent} from "./album/album.component";
 
 const routes: Routes = [
+  { path: '', redirectTo: '/blogs/list', pathMatch: 'full' },
   {
     path: '', component: LayoutTemplatesFullComponent,
     children: [

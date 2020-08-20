@@ -78,6 +78,7 @@ export class ImagesComponent implements OnInit {
     this.client.post('http://localhost:8080/sendSimpleEmail', data).subscribe(
       (response: Email) => {
         alert("shared image list" +response);
+        this.shareForm.reset();
       }, error => {
         console.log(error);
       }
