@@ -22,7 +22,7 @@
                   <p class="mb-4 row"></p>
                   <p>
                     <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn btn-primary">Read More      <span class="glyphicon glyphicon-hand-right"></span></a>
-                           <a *ngIf="blog.active" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn btn-primary" style="padding-left: 25px;margin-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
+                           <a *ngIf="blog.active" [routerLink]="['/blogs',blog.id,'edit']" class="btn btn-primary" style="padding-left: 25px;margin-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
                   </p>
                 </div>
               </div>

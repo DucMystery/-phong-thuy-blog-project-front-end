@@ -67,6 +67,7 @@ export class BlogDetailComponent implements OnInit {
     this.client.post('http://localhost:8080/sendSimpleEmail', data).subscribe(
       (response: IEmail) => {
         console.log(response);
+        this.shareForm.value.email= [''];
       }, error => {
         console.log(error);
       }
@@ -111,6 +112,7 @@ export class BlogDetailComponent implements OnInit {
     };
     this.commentService.saveComment(comment).subscribe((resp: Icomment) => {
       this.getAllComment();
+      this.commentForm.reset();
     });
   }
 

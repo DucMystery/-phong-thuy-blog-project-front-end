@@ -12,6 +12,7 @@ const routes: Routes = [
       {path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)}
     ]
   },
+  { path: '', redirectTo: '/blogs/list', pathMatch: 'full' },
   //Module Album anh
   {
     path: 'images', component: AlbumComponent,

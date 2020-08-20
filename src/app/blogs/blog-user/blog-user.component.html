@@ -8,7 +8,7 @@
             <!--            đây là phần body của blogs.hiển thị các blog-->
             <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:4,currentPage: page};let i = index">
               <div class="blog-entry ftco-animate d-md-flex">
-                <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" src="{{blog.avatarUrl}}"/>
+                <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" src="{{blog.avatarUrl}}" style="width: 200px;height: 200px"/>
                 <div class="text text-2 pl-md-4">
                   <h3 class="mb-2"><a [routerLink]="['/blogs',blog,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
@@ -22,7 +22,7 @@
                   <p class="mb-4 row"></p>
                   <p>
                     <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn btn-primary">Read More      <span class="glyphicon glyphicon-hand-right"></span></a>
-                    <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn btn-primary" style="padding-left: 25px;margin-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
+                    <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.id,'edit']" class="btn btn-primary" style="padding-left: 25px;margin-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
                   </p>
                 </div>
               </div>

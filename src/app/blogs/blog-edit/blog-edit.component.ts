@@ -9,31 +9,25 @@ import {TokenStorageService} from '../../services/tokenStorage.service';
 import {IUser} from '../../models/IUser';
 import {AccountService} from '../../services/account.service';
 import {Observable} from 'rxjs';
-
 declare var $: any;
-
 @Component({
   selector: 'app-blog-edit',
   templateUrl: './blog-edit.component.html',
   styleUrls: ['./blog-edit.component.css']
 })
 export class BlogEditComponent implements OnInit {
-
   myArray: Array<boolean> = [true, false];
   myDefault: Boolean = this.myArray[0];
   account: Observable<any> = this.accountService.findAccountById(this.tokenStorageService.getAccountId());
-
   categories: ICategory[];
+  blog: IBlog ;
   blogEditForm: FormGroup = new FormGroup({
     status: new FormControl(''),
     title: new FormControl(''),
     content: new FormControl(''),
     category: new FormControl(''),
     // postTime: new FormControl('')
-
-
   });
-
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
@@ -42,21 +36,17 @@ export class BlogEditComponent implements OnInit {
               private tokenStorageService: TokenStorageService,
               private accountService: AccountService) {
   }
-
   id = +this.route.snapshot.paramMap.get('id');
-
   ngOnInit(): void {
     this.categoryService.getAll().subscribe((resp: ICategory[]) => {
       this.categories = resp;
     });
-    if (this.tokenStorageService.getAccountId() == this.id) {
+    if (this.tokenStorageService.getAccountId() != null) {
       this.findById();
     } else {
       this.router.navigate(['/blogs/error']);
     }
-
   }
-
   findById() {
     this.blogService.getBlogById(this.id).subscribe((resp: IBlog) => {
       this.blogEditForm.patchValue(resp);
@@ -84,5 +74,4 @@ export class BlogEditComponent implements OnInit {
       });
     }
   }
-
 }
