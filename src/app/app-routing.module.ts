@@ -12,16 +12,16 @@ const routes: Routes = [
       {path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule)}
     ]
   },
-  //Module Album anh
+
   {
     path: 'images', component: AlbumComponent,
 
     loadChildren: () => import('./album/album.module').then(m => m.AlbumModule)
   },
-  //Module auth(dang ky, dang nhap, dang xuat)
+
   {path: 'auth',
     loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRoutingModule)},
-  //Module account chua thiet ke xong
+
 
   {path: 'accounts',loadChildren: ()=> import('./account/account.module').then(m => m.AccountModule)},
 ];

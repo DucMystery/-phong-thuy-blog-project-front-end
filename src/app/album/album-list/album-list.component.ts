@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {TokenStorageService} from '../../services/tokenStorage.service';
 import {IUser} from '../../models/IUser';
 import {AccountService} from '../../services/account.service';
+import {ImageService} from '../../services/albumimage/image.service';
 
 @Component({
   selector: 'app-album-list',
@@ -15,7 +16,10 @@ export class AlbumListComponent implements OnInit {
 
   albums: IAlbum[];
   account:IUser;
-  constructor(private albumService: AlbumService, private router: Router, private storage: TokenStorageService,private userService:AccountService) {
+  constructor(private albumService: AlbumService,
+              private router: Router, private storage: TokenStorageService,
+              private userService:AccountService,
+              private imageService:ImageService) {
   }
 
   id: number;
@@ -34,8 +38,9 @@ export class AlbumListComponent implements OnInit {
       this.albums.map(album=>{
         album.postTime = new Date(album.postTime);
       })
+      console.log(this.albums);
     });
-    console.log(this.albums);
+
   }
 
   getAccount(){

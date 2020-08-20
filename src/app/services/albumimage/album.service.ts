@@ -18,4 +18,9 @@ export class AlbumService {
   getAlbums(id: number): Observable<IAlbum[]> {
     return this.http.get<IAlbum[]>(IMAGES_API+'account/'+id);
   }
+
+
+  getAlbum(id:number):Observable<IAlbum>{
+    return this.http.get<IAlbum>(IMAGES_API + 'account/' + id + '/album');
+  }
 }

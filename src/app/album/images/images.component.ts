@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Email} from '../../models/Email';
 import {TokenStorageService} from '../../services/tokenStorage.service';
+import {IAlbum} from '../../models/albumimage/IAlbum';
+import {AlbumService} from '../../services/albumimage/album.service';
 
 @Component({
   selector: 'app-images',
@@ -17,13 +19,15 @@ export class ImagesComponent implements OnInit {
   shareForm: FormGroup;
   isAccount: boolean = false;
 
+  album:IAlbum;
 
 
   images:IImage[];
   constructor(private activatedRoute: ActivatedRoute,private imageService:ImageService,
               private fb: FormBuilder, public client: HttpClient,
               private router : Router,
-              private tokenStorageService: TokenStorageService
+              private tokenStorageService: TokenStorageService,
+              private albumService:AlbumService,
               ) {
   }
 
@@ -36,6 +40,7 @@ export class ImagesComponent implements OnInit {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
     this.getListImages();
     this.checkAccount();
+    this.getAlbum();
   }
   getListImages(){
     this.imageService.getImageDetailList(this.id).subscribe((resp:IImage[])=>{
@@ -49,12 +54,12 @@ export class ImagesComponent implements OnInit {
       this.isAccount = true;
     }
   }
-
-
-
-
-
-
+  getAlbum(){
+    this.albumService.getAlbum(this.id).subscribe((resp:IAlbum)=>{
+      this.album=resp;
+      console.log(this.album);
+    })
+  }
 
   onSubmit() {
     this.href = window.location.href;

@@ -18,9 +18,10 @@ export class HeaderComponent implements OnInit {
               private storage: TokenStorageService) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.storage.getStatusLoggedOrLogout();
+
     this.avatarUrl = this.storage.getUserAvartar();
     this.getBlogById();
+    this.isLoggedIn = this.storage.getStatusLoggedOrLogout();
   }
   getBlogById(){
     this.accountService.findAccountById(this.storage.getAccountId()).subscribe((response: IUser) =>{
