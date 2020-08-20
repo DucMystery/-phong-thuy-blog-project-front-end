@@ -35,6 +35,7 @@ export class AlbumCreateComponent implements OnInit {
   isSuccess = true;
   isLoading = false;
   isDone = false;
+  accountId:number;
   constructor(  private albumService: AlbumService,
                 private categoryService: CategoryService,
                 private db: AngularFireDatabase,
@@ -45,6 +46,7 @@ export class AlbumCreateComponent implements OnInit {
     this.categoryService.getAll().subscribe(result => {
       this.categories = result;
     });
+    this.accountId=this.storage.getAccountId();
   }
   save() {
     const album : IAlbum = {
@@ -73,7 +75,9 @@ export class AlbumCreateComponent implements OnInit {
       //thuy them code
       this.arrayImage =[];
     }
-    this.router.navigate([''])
+
+    //cần sửa điều hướng đến list album
+    this.router.navigate(['images/'+this.accountId+'/album']);
   }
   uploadFile(event) {
     const files = event.target.files;

@@ -13,14 +13,14 @@
       <ul class="event-list">
         <li *ngFor="let album of albums" [routerLink]="['/images',album.id,'listImage']">
           <time>
-            <span class="day">{{album.postTime.getDay()}}</span>
+            <span class="day">{{album.postTime.getDate()}}</span>
             <span class="month">{{album.postTime.getMonth()+1}}</span>
             <span class="year">{{album.postTime.getFullYear()}}</span>
           </time>
           <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg"/>
           <div class="info">
             <h2 class="title">{{album.name}}</h2>
-            <p class="desc">{{album.postTime.getDay()}}-{{album.postTime.getMonth()+1}}
+            <p class="desc">{{album.postTime.getDate()}}-{{album.postTime.getMonth()+1}}
               -{{album.postTime.getFullYear()}}</p>
           </div>
           <div class="social">

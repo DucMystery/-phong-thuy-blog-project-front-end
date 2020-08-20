@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
   avatarUrl: string;
   account:IUser;
+
   constructor(private accountService: AccountService,
               private storage: TokenStorageService) {}
 

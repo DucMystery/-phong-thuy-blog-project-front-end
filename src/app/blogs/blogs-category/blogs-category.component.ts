@@ -97,7 +97,7 @@ export class BlogsCategoryComponent implements OnInit {
             }, 1);
           };
           loader();
-        })
+        });
       })
 
 

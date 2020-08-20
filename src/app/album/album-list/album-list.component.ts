@@ -22,18 +22,20 @@ export class AlbumListComponent implements OnInit {
   albumId:number;
 
   ngOnInit(): void {
+    this.id= +this.storage.getAccountId();
     this.getAlbums();
     this.getAccount();
+
   }
 
   getAlbums() {
-    this.id = this.storage.getAccountId();
     this.albumService.getAlbums(this.id).subscribe((resp: IAlbum[]) => {
       this.albums = resp;
       this.albums.map(album=>{
         album.postTime = new Date(album.postTime);
       })
     });
+    console.log(this.albums);
   }
 
   getAccount(){
