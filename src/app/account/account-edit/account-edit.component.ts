@@ -1,11 +1,11 @@
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
-import {AngularFireStorage} from "@angular/fire/storage";
-import {finalize} from "rxjs/operators";
-import {AccountService} from "../../services/account.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {TokenStorageService} from "../../services/tokenStorage.service";
-import {IUser} from "../../models/IUser";
-import {Router} from "@angular/router";
+import {IUser} from '../../models/IUser';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {AccountService} from '../../services/account.service';
+import {TokenStorageService} from '../../services/tokenStorage.service';
+import {Router} from '@angular/router';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-account-edit',
@@ -22,7 +22,6 @@ export class AccountEditComponent implements OnInit {
   account: IUser;
   updatedAccount = false;
   currentAccount: IUser;
-
   constructor(
     private storage: AngularFireStorage,
     private fb: FormBuilder,
@@ -30,9 +29,7 @@ export class AccountEditComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {
-
   }
-
   async ngOnInit() {
     this.account = await this.getAccount();
     this.currentAccount = this.getAccount();
@@ -53,27 +50,21 @@ export class AccountEditComponent implements OnInit {
     }
     this.editAccount.patchValue(this.account);
     // this.getAccount();
-
-
   }
-
   submitEditAccount(id, account: any) {
     this.accountService.editAccount(id, account).subscribe();
     this.updatedAccount = true;
     this.router.navigate(['/blogs/list'])
   }
-
   EditAvatar(event: any) {
     // this.submit();
     this.showPreview(event)
   }
-
   //Tim kiem Account the id da luu trong sessionStorage
   getAccount(): any {
     this.id = +this.tokenStorageService.getAccountId();
     return this.accountService.findAccountById(this.id).toPromise();
   }
-
   // =======================================================Day la code cua phan edit avarta
   submit() {
     if (this.selectedImage !== null) {
@@ -91,7 +82,6 @@ export class AccountEditComponent implements OnInit {
       ).subscribe();
     }
   }
-
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -104,6 +94,4 @@ export class AccountEditComponent implements OnInit {
     }
   }
   //=============================================avatar edit xong
-
-
 }

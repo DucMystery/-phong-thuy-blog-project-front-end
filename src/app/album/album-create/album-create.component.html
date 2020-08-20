@@ -1,6 +1,6 @@
 
 
-<div class="wrapper">
+<div class="container">
   <div id="content">
     <div class="container-fruid register">
       <div class="row">
@@ -24,18 +24,19 @@
                              id="tenNha" aria-describedby="emailHelp">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div>
                     <select formControlName="status">
-                      <option selected value="true"> Public</option>
+                      <option [defaultSelected]="true" value="true"> Public</option>
                       <option value="false">Private</option>
                     </select>
                   </div>
-                  <div formGroupName="category" class="form-group" style="padding: 0px!important;">
-                    <label>Category</label>
-                    <select formControlName="id">
-                      <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
-                    </select>
-                  </div>
+                  <br/>
+<!--                  <div formGroupName="category" class="form-group" style="padding: 0px!important;">-->
+<!--&lt;!&ndash;                    <label>Category</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <select formControlName="id">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </select>&ndash;&gt;-->
+<!--                  </div>-->
                   <div class="form-group">
                     <div class="input-group">
                       <div class="text-center">
@@ -64,10 +65,10 @@
 <!--                <button btn btn-pramry>-->
 <!--                  Submit-->
 <!--                </button>-->
-                <button  type="submit" class="btn btn-primary">
+                <button  type="submit" class="btn btn-dark">
                   Submit
                 </button>
-                <button class="btn btn-primary" routerLink="/blogs/list" style="margin-left: 35px">Back Home</button>
+                <button class="btn btn-danger" routerLink="/blogs/list" style="margin-left: 35px">Back Home</button>
               </form>
             </div>
 

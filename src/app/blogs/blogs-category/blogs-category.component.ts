@@ -58,6 +58,13 @@ export class BlogsCategoryComponent implements OnInit {
         this.blogs = response;
         this.blogs.map(blog => {
           blog.postTime = new Date(blog.postTime);
+          if (blog.accountId == this.storageToken.getAccountId()) {
+            blog['active'] = true;
+            return blog;
+          } else {
+            blog['active'] = false;
+            return blog;
+          }
         })
         $(function() {
           var i = 0;

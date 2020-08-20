@@ -22,5 +22,4 @@ export class ImageService {
   saveImage(albumId: number, image : IImage) : Observable<any> {
     return this.http.post(IMAGES_API+'album/'+ albumId,image);
   }
-  get
 }
