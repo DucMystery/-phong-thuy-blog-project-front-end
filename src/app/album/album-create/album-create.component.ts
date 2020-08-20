@@ -16,6 +16,7 @@ declare const myTest: any;
 export class AlbumCreateComponent implements OnInit {
   myItems: File[] = [];
   categories : any[];
+  accountId: number;
   formGroup = new FormGroup({
     name: new FormControl(),
     status: new FormControl(),
@@ -35,7 +36,6 @@ export class AlbumCreateComponent implements OnInit {
   isSuccess = true;
   isLoading = false;
   isDone = false;
-  accountId:number;
   constructor(  private albumService: AlbumService,
                 private categoryService: CategoryService,
                 private db: AngularFireDatabase,
@@ -43,10 +43,10 @@ export class AlbumCreateComponent implements OnInit {
                 private storage: TokenStorageService,
                 private router:Router) {}
   ngOnInit(): void {
+     this.accountId=this.storage.getAccountId();
     this.categoryService.getAll().subscribe(result => {
       this.categories = result;
     });
-    this.accountId=this.storage.getAccountId();
   }
   save() {
     const album : IAlbum = {
@@ -75,8 +75,6 @@ export class AlbumCreateComponent implements OnInit {
       //thuy them code
       this.arrayImage =[];
     }
-
-    //cần sửa điều hướng đến list album
     this.router.navigate(['images/'+this.accountId+'/album']);
   }
   uploadFile(event) {

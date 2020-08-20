@@ -8,7 +8,7 @@
             <!--            đây là phần body của blogs.hiển thị các blog-->
             <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:4,currentPage: page};let i = index">
               <div class="blog-entry ftco-animate d-md-flex">
-                <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" src="{{blog.avatarUrl}}"/>
+                <img [routerLink]="['/blogs',blog.id,'list']" class="img img-2" style="width: 230px;height: 170px" src="{{blog.avatarUrl}}"/>
                 <div class="text text-2 pl-md-4">
                   <h3 class="mb-2"><a [routerLink]="['/blogs',blog.id,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">

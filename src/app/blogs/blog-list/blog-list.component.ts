@@ -55,7 +55,6 @@ export class BlogListComponent implements OnInit {
   getAllBlogs() {
     this.blogService.getAllBlogByTime().subscribe((resp: IBlogResponse[]) => {
       this.blogs = resp;
-      console.log(resp);
       this.blogs.map(blog => {
           debugger
           blog.postTime = new Date(blog.postTime);
