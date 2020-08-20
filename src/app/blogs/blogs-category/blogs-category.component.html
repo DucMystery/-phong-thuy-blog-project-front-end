@@ -1,4 +1,3 @@
-
 <div id="colorlib-main">
   <section class="ftco-section ftco-no-pt ftco-no-pb">
     <div class="container">
@@ -6,14 +5,17 @@
         <div class="col-xl-8 py-5 px-md-5">
           <div class="row pt-md-4">
             <!--            đây là phần body của blogs.hiển thị các blog-->
-            <div class="col-md-12" *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:4,currentPage: page};let i = index">
+            <div class="col-md-12"
+                 *ngFor="let blog of blogs | paginate: {id: 'blog-list',itemsPerPage:4,currentPage: page};let i = index">
               <div class="blog-entry  d-md-flex">
-                <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2" style="width: 230px;height: 170px" src="{{blog.avatarUrl}}"/>
+                <img [routerLink]="['/blogs',blog.accountId,'list']" class="img img-2"
+                     style="width: 230px;height: 170px" src="{{blog.avatarUrl}}"/>
                 <div class="text text-2 pl-md-4">
                   <h3 class="mb-2"><a [routerLink]="['/blogs',blog.id,'blogDetail']">{{blog.title}}</a></h3>
                   <div class="meta-wrap">
                     <p class="meta">
-                      <span>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth()+1}}/{{blog.postTime.getFullYear()}}</span>
+                      <span>{{blog.postTime.getDate()}}/{{blog.postTime.getMonth() + 1}}
+                        /{{blog.postTime.getFullYear()}}</span>
                       <span><a [routerLink]="[blog.id,'blogDetail']">{{blog.nameCategory}}</a></span>
                       <span><i class="	glyphicon glyphicon-list-alt"></i>{{blog.amountComment}}  Comment</span>
                       <span>{{blog.likes}}  Like</span>
@@ -21,8 +23,10 @@
                   </div>
                   <p class="mb-4 row"></p>
                   <p>
-                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn btn-primary">Read More      <span class="glyphicon glyphicon-hand-right"></span></a>
-                    <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn btn-primary" style="padding-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
+                    <a [routerLink]="['/blogs',blog.id,'blogDetail']" class="btn btn-primary">Read More <span
+                      class="glyphicon glyphicon-hand-right"></span></a>
+                    <a *ngIf="isLoggedIn" [routerLink]="['/blogs',blog.accountId,'edit']" class="btn btn-primary"
+                       style="padding-left: 25px">Edit<span class="glyphicon glyphicon-wrench"></span></a>
                   </p>
                 </div>
               </div>
@@ -32,29 +36,14 @@
 
           <!--      negative    đây sẽ là phần phân trang của blog-->
           <div class="row">
-            <!--            <div class="col">-->
-            <!--              <div class="block-27">-->
-            <!--                <ul>-->
-            <!--                  <li><a href="#">&lt;</a></li>-->
-            <pagination-controls  id="blog-list" directionLinks="true" (pageChange)="changePage($event)" style="color: white"></pagination-controls>
-            <!--                  <li class="active"><span>1</span></li>-->
-            <!--                  <li><a href="#">2</a></li>-->
-            <!--                  <li><a href="#">3</a></li>-->
-            <!--                  <li><a href="#">4</a></li>-->
-            <!--                  <li><a href="#">5</a></li>-->
-            <!--                  <li><a href="#">&gt;</a></li>-->
-            <!--                </ul>-->
-            <!--              </div>-->
-            <!--            </div>-->
+            <pagination-controls id="blog-list" directionLinks="true" (pageChange)="changePage($event)"
+                                 style="color: white"></pagination-controls>
+
           </div>
 
           <!--          kết thúc phân trang-->
-
-
         </div>
-        <!--        <app-side-right></app-side-right>-->
 
-        <!--        Day la code chuyen tu side-right sang-->
 
         <div class="col-xl-4 sidebar  bg-light pt-5">
           <div class="sidebar-box pt-md-4">
@@ -67,7 +56,7 @@
               <div *ngIf="isLoggedIn">
                 <div class="container">
                   <div class="col-xs-6">
-                    <img height= "170" width="170" [src]="avatarUrl">
+                    <img height="170" width="170" [src]="avatarUrl">
                   </div>
 
                   <div class="dropdown col-xs-6">
@@ -128,7 +117,8 @@
         <div class="show fullscreen">
           <svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                    stroke="#F96D00"/>
           </svg>
         </div>
       </div>
