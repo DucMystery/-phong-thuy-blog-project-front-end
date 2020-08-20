@@ -1,5 +1,4 @@
 <div id="colorlib-page">
-
   <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
     <h1 id="colorlib-logo"><a href="index.html"><span class="img"
                                                       style="background-image: url(../../../assets/img/new_image.jpg);"></span>Louie
@@ -7,7 +6,7 @@
     <nav id="colorlib-main-menu" role="navigation">
       <ul>
         <li class="colorlib-active"><a routerLink="/blogs/list">Home</a></li>
-        <li class="colorlib-active"><span>Album: {{album.name}}</span></li>
+        <!--        <li class="colorlib-active"><span>Album: {{album.name}}</span></li>-->
       </ul>
     </nav>
     <div class="colorlib-footer">
@@ -16,10 +15,9 @@
           <div class="form-group d-flex">
             <input placeholder="Enter Email Address to share list image" class="form-control" type="email" formControlName="email">
           </div>
-          <br/>
           <div class="form-group d-flex">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success" style="margin-left: 20px">
-             Share List Image
+            <button class="btn btn-success">
+              Share List Image
             </button>
           </div>
         </form>
@@ -32,7 +30,7 @@
       <div>
         <div class="row">
           <div class="card-group col-sm-4" *ngFor="let image of images">
-            <div class="card" style="margin: 8px">
+            <div class="card">
               <a href="{{image.srcImg}}">
                 <img src="{{image.srcImg}}" class="image">
               </a>
@@ -43,4 +41,3 @@
     </section>
   </div>
 </div>
-

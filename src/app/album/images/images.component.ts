@@ -41,6 +41,7 @@ export class ImagesComponent implements OnInit {
     this.getListImages();
     this.checkAccount();
     this.getAlbum();
+
   }
   getListImages(){
     this.imageService.getImageDetailList(this.id).subscribe((resp:IImage[])=>{
