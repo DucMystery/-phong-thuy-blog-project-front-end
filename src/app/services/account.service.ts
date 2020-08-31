@@ -3,7 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IUser} from "../models/IUser";
 import {IBlog} from '../models/iblog';
-const ACCOUNT_API = 'http://localhost:8080/api/accounts/';
+import {environment} from '../../environments/environment';
+const ACCOUNT_API = `${environment.apiUrl}/api/accounts/`;
 @Injectable({providedIn: 'root'})
 export class AccountService {
   avatarUrl: string;

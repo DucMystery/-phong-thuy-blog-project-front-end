@@ -2,8 +2,9 @@ import {Injectable,EventEmitter} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../models/IUser';
+import {environment} from '../../environments/environment';
 
-const AUTH_API = 'http://localhost:8080/';
+const AUTH_API = `${environment.apiUrl}`;
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
