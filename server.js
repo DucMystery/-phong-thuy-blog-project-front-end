@@ -13,10 +13,10 @@ const forceSSL = function () {
     next();
   }
 };
-app.use(express.static('./dist/-phong-thuy-blog-project-front-end'));
+app.use(express.static('./dist/medium-FE'));
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname,'/dist/-phong-thuy-blog-project-front-end/index.html'));
+  res.sendFile(path.join(__dirname,'./dist/medium-FE/index.html'));
 });
 
 app.use(forceSSL());
